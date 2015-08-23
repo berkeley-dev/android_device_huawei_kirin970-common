@@ -18,3 +18,8 @@ def FullOTA_InstallEnd(info):
     info.script.AppendExtra('assert(run_program("/sbin/sh", "/tmp/install/bin/releasetools.kirin970.sh") == 0);')
     info.script.AppendExtra('unmount("/system");');
     info.script.AppendExtra('unmount("/vendor");');
+
+def FullOTA_PostValidate(info):
+    info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "/dev/block/bootdevice/by-name/system");');
+    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "/dev/block/bootdevice/by-name/system");');
+    info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "/dev/block/bootdevice/by-name/system");');
