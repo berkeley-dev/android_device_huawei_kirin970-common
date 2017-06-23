@@ -1,3 +1,6 @@
+# Audio
+ro.config.media_vol_steps=25
+
 # GSI always generate dex pre-opt in system image
 ro.cp_system_other_odex=0
 
