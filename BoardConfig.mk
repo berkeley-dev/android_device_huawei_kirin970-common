@@ -35,6 +35,9 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
+# Extended Filesystem Support
+TARGET_EXFAT_DRIVER := exfat
+
 # Lineage hardware
 BOARD_HARDWARE_CLASS += \
     $(DEVICE_PATH)/lineagehw
