@@ -14,8 +14,15 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := $(call my-dir)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-ifeq ($(TARGET_DEVICE),berkeley)
-include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+# Inherit from berkeley device
+$(call inherit-product, device/huawei/berkeley/device.mk)
+
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := berkeley
+PRODUCT_NAME := full_berkeley
+PRODUCT_BRAND := Huawei
+PRODUCT_MODEL := berkeley

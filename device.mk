@@ -14,8 +14,16 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := $(call my-dir)
+# Permissions
+PRODUCT_COPY_FILES := \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
-ifeq ($(TARGET_DEVICE),berkeley)
-include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+# HIDL
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0
+
+# VNDK
+PRODUCT_PACKAGES += \
+    vndk-sp
