@@ -38,8 +38,8 @@ BOARD_VNDK_VERSION := current
 BOARD_VNDK_RUNTIME_DISABLE := true
 
 # Properties
-TARGET_SYSTEM_PROP := build/make/target/board/treble_system.prop
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Bootloader, kernel and recovery are not part of generic AOSP image
 TARGET_NO_BOOTLOADER := true
