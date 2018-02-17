@@ -14,6 +14,13 @@
 # limitations under the License.
 #
 
+# NFC
+PRODUCT_PACKAGES += \
+    NfcNci \
+    Tag \
+    com.android.nfc_extras \
+    nfc_nci.pn54x.default
+
 # Permissions
 PRODUCT_COPY_FILES := \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
