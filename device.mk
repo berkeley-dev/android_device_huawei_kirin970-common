@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# Display
+PRODUCT_PACKAGES += \
+    libion
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
