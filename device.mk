@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2160
+TARGET_SCREEN_WIDTH := 1080
+
 # Display
 PRODUCT_PACKAGES += \
     libion
