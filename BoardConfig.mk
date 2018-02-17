@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+DEVICE_PATH := device/huawei/berkeley
+
 # Architecture
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_KERNEL := true
@@ -33,7 +35,7 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_USES_64_BIT_BINDER := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
 # Display
@@ -54,7 +56,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 5767168000
 
 # Properties
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
 # Vendor
 BOARD_USES_VENDORIMAGE := true
