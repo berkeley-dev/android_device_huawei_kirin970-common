@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+$(call inherit-product-if-exists, vendor/huawei/berkeley/berkeley-vendor.mk)
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2160
 TARGET_SCREEN_WIDTH := 1080
