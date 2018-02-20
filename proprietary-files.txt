@@ -95,7 +95,7 @@ lib/libstagefright_amrnb_common.so:lib/vndk-compat/libstagefright_amrnb_common.s
 lib/libstagefright_enc_common.so:lib/vndk-compat/libstagefright_enc_common.so
 lib/libstagefright_foundation.so:lib/vndk-compat/libstagefright_foundation.so
 lib/libstagefright_hwextendedmediadrm.so:lib/vndk-compat/libstagefright_hwextendedmediadrm.so
-lib/libstagefright_omx.so:lib/vndk-compat/libstagefright_omx.so
+lib/libstagefright_omx.so:lib/vndk-compat/libstagefright_omx.so|a53babcf39bd3d32c648bac090e1cdc0665dd3e3
 lib/libstagefright_soft_aacdec.so:lib/vndk-compat/libstagefright_soft_aacdec.so
 lib/libstagefright_soft_aacenc.so:lib/vndk-compat/libstagefright_soft_aacenc.so
 lib/libstagefright_soft_amrdec.so:lib/vndk-compat/libstagefright_soft_amrdec.so
@@ -231,7 +231,7 @@ lib64/libstagefright_amrnb_common.so:lib64/vndk-compat/libstagefright_amrnb_comm
 lib64/libstagefright_enc_common.so:lib64/vndk-compat/libstagefright_enc_common.so
 lib64/libstagefright_foundation.so:lib64/vndk-compat/libstagefright_foundation.so
 lib64/libstagefright_hwextendedmediadrm.so:lib64/vndk-compat/libstagefright_hwextendedmediadrm.so
-lib64/libstagefright_omx.so:lib64/vndk-compat/libstagefright_omx.so
+lib64/libstagefright_omx.so:lib64/vndk-compat/libstagefright_omx.so|90dfb1584b229e2e15d90c898bdc62db37d0fd1b
 lib64/libstagefright_soft_aacdec.so:lib64/vndk-compat/libstagefright_soft_aacdec.so
 lib64/libstagefright_soft_aacenc.so:lib64/vndk-compat/libstagefright_soft_aacenc.so
 lib64/libstagefright_soft_amrdec.so:lib64/vndk-compat/libstagefright_soft_amrdec.so
