@@ -94,7 +94,6 @@ lib/libssl.so:lib/vndk-compat/libssl.so
 lib/libstagefright_amrnb_common.so:lib/vndk-compat/libstagefright_amrnb_common.so
 lib/libstagefright_enc_common.so:lib/vndk-compat/libstagefright_enc_common.so
 lib/libstagefright_foundation.so:lib/vndk-compat/libstagefright_foundation.so
-lib/libstagefright_hwextendedmediadrm.so:lib/vndk-compat/libstagefright_hwextendedmediadrm.so
 lib/libstagefright_omx.so:lib/vndk-compat/libstagefright_omx.so|a53babcf39bd3d32c648bac090e1cdc0665dd3e3
 lib/libstagefright_soft_aacdec.so:lib/vndk-compat/libstagefright_soft_aacdec.so
 lib/libstagefright_soft_aacenc.so:lib/vndk-compat/libstagefright_soft_aacenc.so
@@ -223,14 +222,13 @@ lib64/libprotobuf-cpp-full.so:lib64/vndk-compat/libprotobuf-cpp-full.so
 lib64/libprotobuf-cpp-lite.so:lib64/vndk-compat/libprotobuf-cpp-lite.so
 lib64/libradio_metadata.so:lib64/vndk-compat/libradio_metadata.so
 lib64/libselinux.so:lib64/vndk-compat/libselinux.so
-lib64/libsoftkeymasterdevice.so:lib64/vndk-compat/libsoftkeymasterdevice.so|a6a57e8036f56c1eaf4a20dce457885234e301cd
+lib64/libsoftkeymasterdevice.so:lib64/vndk-compat/libsoftkeymasterdevice.so|623a500454d5c2d9049dec38c977db43e3322e35
 lib64/libspeexresampler.so:lib64/vndk-compat/libspeexresampler.so
 lib64/libsqlite.so:lib64/vndk-compat/libsqlite.so
 lib64/libssl.so:lib64/vndk-compat/libssl.so
 lib64/libstagefright_amrnb_common.so:lib64/vndk-compat/libstagefright_amrnb_common.so
 lib64/libstagefright_enc_common.so:lib64/vndk-compat/libstagefright_enc_common.so
 lib64/libstagefright_foundation.so:lib64/vndk-compat/libstagefright_foundation.so
-lib64/libstagefright_hwextendedmediadrm.so:lib64/vndk-compat/libstagefright_hwextendedmediadrm.so
 lib64/libstagefright_omx.so:lib64/vndk-compat/libstagefright_omx.so|90dfb1584b229e2e15d90c898bdc62db37d0fd1b
 lib64/libstagefright_soft_aacdec.so:lib64/vndk-compat/libstagefright_soft_aacdec.so
 lib64/libstagefright_soft_aacenc.so:lib64/vndk-compat/libstagefright_soft_aacenc.so
