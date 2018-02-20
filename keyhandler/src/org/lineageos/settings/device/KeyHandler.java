@@ -22,6 +22,7 @@ import android.hardware.input.InputManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -36,6 +37,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int KEY_FINGERPRINT_LEFT = 105;
     private static final int KEY_FINGERPRINT_RIGHT = 106;
     private static final int KEY_FINGERPRINT_CLICK = 174;
+    private static String FPNAV_ENABLED_PROP = "sys.fpnav.enabled";
 
     private static final int[] sSupportedGestures = new int[] {
         KEY_FINGERPRINT_LONGPRESS,
@@ -52,6 +54,10 @@ public class KeyHandler implements DeviceKeyHandler {
     public KeyHandler(Context context) {
         mContext = context;
         mHandler = new Handler(Looper.getMainLooper());
+    }
+
+    public void handleNavbarToggle(boolean enabled) {
+        SystemProperties.set(FPNAV_ENABLED_PROP, enabled ? "0" : "1");
     }
 
     public KeyEvent handleKeyEvent(KeyEvent event) {
