@@ -32,6 +32,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libion
 
+# HIDL
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/compatibility_matrix.xml:system/compatibility_matrix.xml
+
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
