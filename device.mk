@@ -67,6 +67,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
+# Properties
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
+    ro.build.version.codename=$(PLATFORM_VERSION_CODENAME) \
+    ro.build.version.sdk=$(PLATFORM_SDK_VERSION)
+
 # VNDK
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/vndk-compat/ld.config.compat.txt:system/etc/ld.config.compat.txt \
