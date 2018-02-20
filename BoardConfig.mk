@@ -14,43 +14,16 @@
 # limitations under the License.
 #
 
+include build/make/target/board/generic_arm64_a/BoardConfig.mk
+
 DEVICE_PATH := device/huawei/berkeley
-
-# Architecture
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := true
-
-TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
-
-TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-TARGET_2ND_CPU_ABI := armeabi-v7a
-TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
-
-TARGET_USES_64_BIT_BINDER := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
-# Display
-TARGET_USES_HWC2 := true
-
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 5767168000
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
 
 # Properties
-BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-
-# Vendor
-BOARD_USES_VENDORIMAGE := true
-TARGET_COPY_OUT_VENDOR := vendor
