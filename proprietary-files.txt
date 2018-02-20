@@ -223,7 +223,7 @@ lib64/libprotobuf-cpp-full.so:lib64/vndk-compat/libprotobuf-cpp-full.so
 lib64/libprotobuf-cpp-lite.so:lib64/vndk-compat/libprotobuf-cpp-lite.so
 lib64/libradio_metadata.so:lib64/vndk-compat/libradio_metadata.so
 lib64/libselinux.so:lib64/vndk-compat/libselinux.so
-lib64/libsoftkeymasterdevice.so:lib64/vndk-compat/libsoftkeymasterdevice.so
+lib64/libsoftkeymasterdevice.so:lib64/vndk-compat/libsoftkeymasterdevice.so|a6a57e8036f56c1eaf4a20dce457885234e301cd
 lib64/libspeexresampler.so:lib64/vndk-compat/libspeexresampler.so
 lib64/libsqlite.so:lib64/vndk-compat/libsqlite.so
 lib64/libssl.so:lib64/vndk-compat/libssl.so
