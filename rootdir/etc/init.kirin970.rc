@@ -1,0 +1,3 @@
+on property:sys.boot_completed=1
+    stop displayengine-hal-1-0
+    stop hisupl_service
