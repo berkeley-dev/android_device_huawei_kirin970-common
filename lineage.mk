@@ -14,12 +14,12 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/huawei/berkeley/full_berkeley.mk)
+$(call inherit-product, $(LOCAL_PATH)/full_bkl.mk)
 
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_berkeley
-PRODUCT_DEVICE := berkeley
+PRODUCT_NAME := lineage_bkl
+PRODUCT_DEVICE := bkl
 PRODUCT_BRAND := Huawei
-PRODUCT_MODEL := Honor View 10
+PRODUCT_MODEL := Honor-View10

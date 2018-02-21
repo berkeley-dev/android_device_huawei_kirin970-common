@@ -14,13 +14,16 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/huawei/berkeley/full_berkeley.mk)
-
-# Inherit from the common Open Source product configuration
+# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/treble_common.mk)
 
-PRODUCT_NAME := aosp_berkeley
-PRODUCT_DEVICE := berkeley
+# Inherit from berkeley device
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
+
+# Device identifier. This must come after all inclusions
+PRODUCT_NAME := full_bkl
+PRODUCT_DEVICE := bkl
 PRODUCT_BRAND := Huawei
-PRODUCT_MODEL := Honor View 10
+PRODUCT_MODEL := Honor-View10
