@@ -28,6 +28,11 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     init.kirin970.rc
 
+ifeq ($(TARGET_PRODUCT),lineage_berkeley)
+PRODUCT_PACKAGES += \
+    init.kirin970.lineage.rc
+endif
+
 # Display
 PRODUCT_PACKAGES += \
     libion
