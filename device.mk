@@ -91,3 +91,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.sys.sdcardfs=0 \
     persist.sys.sdcardfs.emulated=0 \
     persist.sys.sdcardfs.public=0
+
+PRODUCT_COPY_FILES += \
+	$(call find-copy-subdir-files,*,device/honor/bkl/system/,system/)
