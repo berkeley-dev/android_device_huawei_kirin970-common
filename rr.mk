@@ -19,6 +19,8 @@ $(call inherit-product, $(LOCAL_PATH)/full_bkl.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/rr/config/common_full_phone.mk)
 
+RR_BUILDTYPE = OpenKirin
+
 PRODUCT_NAME := rr_bkl
 PRODUCT_DEVICE := bkl
 PRODUCT_BRAND := Huawei
