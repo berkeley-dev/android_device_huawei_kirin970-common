@@ -22,6 +22,10 @@ DEVICE_PATH := device/huawei/berkeley
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
+# Lineage hardware
+BOARD_HARDWARE_CLASS += \
+    $(DEVICE_PATH)/lineagehw
+
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3707764736
 
