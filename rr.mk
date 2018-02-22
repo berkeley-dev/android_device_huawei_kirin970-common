@@ -29,3 +29,7 @@ PRODUCT_NAME := rr_bkl
 PRODUCT_DEVICE := bkl
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := Honor-View10
+
+# Override device name
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    TARGET_DEVICE=kirin970
