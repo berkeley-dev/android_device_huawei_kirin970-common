@@ -24,10 +24,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 2160
-TARGET_SCREEN_WIDTH := 1080
-
 # Device init scripts
 PRODUCT_PACKAGES += \
     init.kirin970.rc
