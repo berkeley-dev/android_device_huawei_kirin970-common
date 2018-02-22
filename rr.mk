@@ -17,9 +17,9 @@ $(call inherit-product, $(LOCAL_PATH)/pre-base.mk)
 $(call inherit-product, $(LOCAL_PATH)/full_bkl.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/rr/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_bkl
+PRODUCT_NAME := rr_bkl
 PRODUCT_DEVICE := bkl
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := Honor-View10
