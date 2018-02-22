@@ -92,5 +92,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.sdcardfs.emulated=0 \
     persist.sys.sdcardfs.public=0
 
+# FPS
+PRODUCT_PACKAGES += \
+    hw-fpnav-daemon
+
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/honor/bkl/system/,system/)
