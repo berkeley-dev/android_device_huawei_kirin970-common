@@ -16,17 +16,17 @@
 
 include build/make/target/board/generic_arm64_a/BoardConfig.mk
 
-LOCAL_PATH := device/honor/bkl
+DEVICE_PATH := device/honor/bkl
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3707764736
 
 # Properties
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
 # SELinux
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
