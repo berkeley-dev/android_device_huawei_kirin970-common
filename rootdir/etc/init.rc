@@ -262,15 +262,6 @@ on load_persist_props_action
     start logd
     start logd-reinit
 
-on cust_parse_action
-    cust_parse
-
-on update_oem_version_action
-    update_oem_version
-
-on update_wifionly_identity_action
-    update_wifionly_identity
-
 # Indicate to fw loaders that the relevant mounts are up.
 on firmware_mounts_complete
     rm /dev/.booting
@@ -284,7 +275,6 @@ on late-init
     # /system and /vendor must be mounted by the end of the fs stage,
     # while /data is optional.
     trigger fs
-    trigger cust_parse_action
     trigger post-fs
 
     # Mount fstab in init.{$device}.rc by mount_all with '--late' parameter
@@ -293,8 +283,6 @@ on late-init
     # With /system mounted and properties form /system + /factory available,
     # some services can be started.
     trigger late-fs
-
-    trigger update_wifionly_identity_action
 
     # Now we can mount /data. File encryption requires keymaster to decrypt
     # /data, which in turn can only be loaded when system properties are present.
@@ -381,8 +369,6 @@ on late-fs
     class_start early_hal
 
 on post-fs-data
-    start teecd
-
     # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
     chmod 0771 /data
