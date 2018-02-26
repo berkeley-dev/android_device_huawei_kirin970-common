@@ -37,13 +37,14 @@ PRODUCT_COPY_FILES += \
 endif
 
 # Device init scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init:root/init \
+    $(LOCAL_PATH)/rootdir/etc/init.rc:root/init.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.usb.configfs.rc:root/init.kirin970.usb.configfs.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.usb.rc:root/init.kirin970.usb.rc
+
 PRODUCT_PACKAGES += \
     init.kirin970.rc
-
-ifeq ($(TARGET_PRODUCT),lineage_berkeley)
-PRODUCT_PACKAGES += \
-    init.kirin970.lineage.rc
-endif
 
 # Display
 PRODUCT_PACKAGES += \
