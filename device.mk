@@ -39,6 +39,14 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     libion
 
+# FPS
+PRODUCT_PACKAGES += \
+    hw-fpnav-daemon
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/system/bin/hw-fpnav:system/bin/hw-fpnav \
+    $(LOCAL_PATH)/prebuilt/system/etc/hw-fpnav.dex:system/etc/hw-fpnav.dex
+
 # HIDL
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/compatibility_matrix.xml:system/compatibility_matrix.xml
@@ -95,7 +103,3 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.sys.sdcardfs=0 \
     persist.sys.sdcardfs.emulated=0 \
     persist.sys.sdcardfs.public=0
-
-# FPS
-PRODUCT_PACKAGES += \
-    hw-fpnav-daemon

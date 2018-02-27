@@ -87,13 +87,7 @@ int main() {
 		system("input keyevent KEYCODE_BACK &");
 		break;
 	    case FINGERPRINT_RIGHT:
-		system("input keyevent KEYCODE_VOICE_ASSIST &");
-		break;
-	    case FINGERPRINT_UP:
-		system("cmd statusbar expand-settings &");
-		break;
-	    case FINGERPRINT_DOWN:
-		system("cmd statusbar expand-notifications &");
+		system("input keyevent KEYCODE_BACK &");
 		break;
 	    case FINGERPRINT_LONGPRESS:
 		system("input keyevent KEYCODE_APP_SWITCH &");
