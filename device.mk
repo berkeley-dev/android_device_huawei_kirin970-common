@@ -99,6 +99,3 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # FPS
 PRODUCT_PACKAGES += \
     hw-fpnav-daemon
-
-PRODUCT_COPY_FILES += \
-	$(call find-copy-subdir-files,*,device/honor/bkl/system/,system/)
