@@ -1,0 +1,18 @@
+type vndk_detect, coredomain, domain;
+type vndk_detect_exec, exec_type, file_type;
+
+# Allow for transition from init domain to vndk_detect
+init_daemon_domain(vndk_detect)
+
+# Allow reading files in /vendor
+r_dir_file(vndk_detect, vendor_file)
+
+# Allow setting sys.vndk.ldconfig property
+set_prop(vndk_detect, vndk_detect_prop)
+
+# Shell script needs to execute /system/bin/grep
+allow vndk_detect system_file:file rx_file_perms;
+
+# Shell script needs to execute /system/bin/sh
+allow vndk_detect shell_exec:file rx_file_perms;
+allow vndk_detect toolbox_exec:file rx_file_perms;

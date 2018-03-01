@@ -1,0 +1,2 @@
+# VNDK
+/system/bin/vndk-detect    u:object_r:vndk_detect_exec:s0
