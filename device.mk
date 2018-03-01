@@ -94,8 +94,12 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # VNDK
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/vndk-compat/vndk-detect:system/bin/vndk-detect \
     $(LOCAL_PATH)/vndk-compat/ld.config.compat.txt:system/etc/ld.config.compat.txt \
     $(LOCAL_PATH)/vndk-compat/vndk-compat.rc:system/etc/init/vndk-compat.rc
+
+PRODUCT_PACKAGES += \
+    vndk-sp
 
 # disable sdcardfs
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
