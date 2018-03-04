@@ -1,2 +1,0 @@
-on post-fs
-    export SYSTEMSERVERCLASSPATH /system/framework/org.lineageos.platform.jar:/system/framework/org.lineageos.hardware.jar:/system/framework/services.jar:/system/framework/ethernet-service.jar:/system/framework/wifi-service.jar:/system/framework/hwServices.jar:/system/framework/hwWifi-service.jar:/system/framework/hwcustServices.jar:/system/framework/hwcustwifi-service.jar
