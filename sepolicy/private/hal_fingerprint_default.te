@@ -1,0 +1,2 @@
+#allow hal_fingerprint_default exception_device:chr_file w_file_perms;
+#allow hal_fingerprint_default splash2_data_file:file rw_file_perms;

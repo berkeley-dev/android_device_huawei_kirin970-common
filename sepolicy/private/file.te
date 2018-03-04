@@ -1,0 +1,6 @@
+type hisee_data_file, data_file_type, file_type;
+type make_ext4fs_blkdev, dev_type;
+type shex_block_device, dev_type;
+type thirdmodem_block_device, dev_type;
+type thirdmodemnvm_block_device, dev_type;
+type thirdmodemnvmbkp_block_device, dev_type;

@@ -1,2 +1,47 @@
+# Block Devices
+/dev/block/bootdevice/by-name/modem_om          u:object_r:make_ext4fs_blkdev:s0
+/dev/block/bootdevice/by-name/3rdmodem          u:object_r:thirdmodem_block_device:s0
+/dev/block/bootdevice/by-name/3rdmodemnvm       u:object_r:thirdmodemnvm_block_device:s0
+/dev/block/bootdevice/by-name/3rdmodemnvmbkp    u:object_r:thirdmodemnvmbkp_block_device:s0
+/dev/block/bootdevice/by-name/hisee_fs          u:object_r:hisee_blkdev:s0
+/dev/block/bootdevice/by-name/sensorhub         u:object_r:shex_block_device:s0
+/dev/block/bootdevice/by-name/hisee_img         u:object_r:hisee_blkdev:s0
+/dev/block/bootdevice/by-name/splash2           u:object_r:splash2_block_device:s0
+
+# Cust Data
+/data/custom.bin                u:object_r:cust_data_file:s0
+/data/product.bin               u:object_r:cust_data_file:s0
+/data/test_nv.bin               u:object_r:cust_data_file:s0
+/data/test_ver.bin              u:object_r:cust_data_file:s0
+/data/cust_ver.bin              u:object_r:cust_data_file:s0
+/data/facapp                    u:object_r:cust_data_file:s0
+/data/custom_cota\.bin          u:object_r:cust_data_file:s0
+
+# DMD
+/dev/dsm                   u:object_r:dmd_device:s0
+
+# HiSEE
+/hisee_fs(/.*)?            u:object_r:hisee_data_file:s0
+
+# HWLog
+/dev/hwlog_exception    u:object_r:exception_device:s0
+/dev/hwlog_jank         u:object_r:jank_device:s0
+/dev/hwlog_dubai        u:object_r:dubai_log_device:s0
+/dev/hwlog_switch       u:object_r:logcat_device:s0
+
+# Logging (yes dumb...)
+/data/log(/.*)?         u:object_r:logcat_data_file:s0
+/data/log/gps(/.*)?     u:object_r:logcat_data_file:s0
+/data/log/wifi(/.*)?            u:object_r:logcat_data_file:s0
+/data/hwzd_logs(/.*)?           u:object_r:logcat_data_file:s0
+/data/hisi_logs(/.*)?           u:object_r:logcat_data_file:s0
+/data/log/hi110x(/.*)?          u:object_r:logcat_data_file:s0
+/data/perf_data_hs.data         u:object_r:logcat_data_file:s0
+/data/android_logs(/.*)?                u:object_r:logcat_data_file:s0
+/data/log/fingerprint(/.*)?             u:object_r:logcat_data_file:s0
+
+# Splash2
+/splash2(/.*)?                                  u:object_r:splash2_data_file:s0
+
 # VNDK
 /system/bin/vndk-detect    u:object_r:vndk_detect_exec:s0

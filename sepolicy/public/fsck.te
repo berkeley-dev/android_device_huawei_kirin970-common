@@ -1,0 +1,1 @@
+allow fsck hisee_blkdev:blk_file rw_file_perms;
