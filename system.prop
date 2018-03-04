@@ -6,6 +6,3 @@ ro.adb.secure=1
 
 # Disable FP nav by default
 sys.fpnav.enabled=0
-
-# Make sdcards visibile in StorageManager
-persist.sys.adoptable_fbe=true
