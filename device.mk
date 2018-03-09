@@ -50,6 +50,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/compatibility_matrix.xml:system/compatibility_matrix.xml
 
+# KeyHandler
+PRODUCT_PACKAGES += \
+    org.lineageos.keyhandler
+
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
