@@ -22,4 +22,8 @@
          3 = right side
     -->
     <integer name="config_fingerprintSensorLocation">1</integer>
+
+    <!-- Double twist sensor name and vendor used by gesture setting -->
+    <string name="gesture_double_twist_sensor_name" translatable="false">gyroscope-lsm6ds3-c</string>
+    <string name="gesture_double_twist_sensor_vendor" translatable="false">st</string>
 </resources>
