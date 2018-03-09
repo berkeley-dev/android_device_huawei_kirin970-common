@@ -1,4 +1,2 @@
-/system/bin/hw-fpnav                 	u:object_r:hw_fpnav_exec:s0
-
 # VNDK
 /system/bin/vndk-detect    u:object_r:vndk_detect_exec:s0
