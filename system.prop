@@ -4,5 +4,8 @@ ro.cp_system_other_odex=0
 # Enable ADB authentication
 ro.adb.secure=1
 
+# Enable FP nav by default
+sys.fpnav.enabled=1
+
 # Make sdcards visibile in StorageManager
 persist.sys.adoptable_fbe=true
