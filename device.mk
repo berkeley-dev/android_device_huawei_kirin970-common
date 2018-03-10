@@ -88,6 +88,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.version.release=$(PLATFORM_VERSION) \
     ro.build.version.sdk=$(PLATFORM_SDK_VERSION)
 
+# TextClassifier smart selection model files
+PRODUCT_PACKAGES += \
+    textclassifier.smartselection.bundle1
+
 # VNDK
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/vndk-compat/vndk-detect:system/bin/vndk-detect \
