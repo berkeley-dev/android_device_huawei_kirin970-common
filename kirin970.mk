@@ -47,6 +47,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/fingerprint.kl:system/usr/keylayout/fingerprint.kl
 
+# IR
+PRODUCT_PACKAGES += \
+    irself
+
+PRODUCT_BOOT_JARS += \
+    irself
+
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
