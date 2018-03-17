@@ -95,6 +95,13 @@ PRODUCT_PACKAGES += \
     libshims_hisupl \
     libshims_hwsmartdisplay_jni
 
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-huawei
+
+PRODUCT_BOOT_JARS += \
+    telephony-huawei
+
 # VNDK
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/vndk-compat/vndk-detect:system/bin/vndk-detect \
