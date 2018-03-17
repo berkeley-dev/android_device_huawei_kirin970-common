@@ -1,0 +1,2 @@
+type ims_config_service, service_manager_type;
+type ims_ut_service, service_manager_type;

@@ -2623,6 +2623,23 @@ bin/displayengineserver:bin/displayengineserver@1.1|5c5a704b6b3bc145001d22f108d2
 lib/libdisplayengineservice.so:lib/libdisplayenginesvc_1_1.so|3a9143552436dc0bc7dedca89141616ff4ebec77
 lib64/libdisplayengineservice.so:lib64/libdisplayenginesvc_1_1.so|0330a428a6a8259cf916ff724f6ac891388f8df7
 
+# IMS
+-app/HwIms/HwIms.apk
+app/HwIms/lib/arm64/libHME-Video.so
+app/HwIms/lib/arm64/libVT80.so
+app/HwIms/lib/arm64/libhw_sys.so
+app/HwIms/lib/arm64/libsci_tls_default.so
+app/HwIms/lib/arm64/libut.so
+app/HwIms/lib/arm64/libsci.so
+app/HwIms/lib/arm64/libvsc.so
+app/HwIms/lib/arm64/libhw_media.so
+app/HwIms/lib/arm64/libsci_ssconf.so
+app/HwIms/lib/arm64/libtls_default.so
+app/HwIms/lib/arm64/libmvd_hme_vt.so
+app/HwIms/lib/arm64/libcryptotsc.so
+app/HwIms/lib/arm64/libssltsc.so
+app/HwIms/lib/arm64/liblogin.so
+
 # Radio
 emui/base/global/ons.bin
 

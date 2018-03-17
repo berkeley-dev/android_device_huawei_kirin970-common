@@ -1,2 +1,4 @@
+allow radio ims_config_service:service_manager add;
+allow radio ims_ut_service:service_manager { add find };
 allow radio system_data_file:lnk_file r_file_perms;
 allow radio vendor_file:file rx_file_perms;
