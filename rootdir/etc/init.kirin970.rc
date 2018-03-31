@@ -1,6 +1,7 @@
 on init
     mount none /system/bin/adbd /sbin/adbd bind
     mount none /dev/null /vendor/etc/init/vendor.huawei.hardware.hisupl@1.0-service.rc bind
+    mount none /system/etc/usb_audio_policy_configuration.xml /vendor/etc/usb_audio_policy_configuration.xml bind
     mount none /system/usr/keylayout/fingerprint.kl /vendor/usr/keylayout/fingerprint.kl bind
 
 on property:sys.boot_completed=1

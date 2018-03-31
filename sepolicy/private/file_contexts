@@ -1,3 +1,6 @@
+# Audio
+/system/etc/usb_audio_policy_configuration.xml    u:object_r:vendor_configs_file:s0
+
 # bfm
 /dev/hw_bfm             u:object_r:bfmr_device:s0
 
