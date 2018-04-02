@@ -26,9 +26,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 # Device init scripts
 PRODUCT_PACKAGES += \
     init.kirin970.rc
-
-PRODUCT_PACKAGES += \
-    init.kirin970.lineage.rc
+    init.kirin970.environ.rc
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
