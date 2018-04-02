@@ -42,7 +42,7 @@ public class HighTouchSensitivity {
      * or the operation failed while reading the status; true in any other case.
      */
     public static boolean isEnabled() {
-        return ENABLED.equals(FileUtils.readOneLine(FILE_MODE));
+        return FileUtils.readOneLine(FILE_MODE).equals(ENABLED);
     }
 
     /**
