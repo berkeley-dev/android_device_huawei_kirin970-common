@@ -18,13 +18,13 @@ $(call inherit-product-if-exists, vendor/google/gapps.mk)
 $(call inherit-product, $(LOCAL_PATH)/full_leland.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2160
 TARGET_SCREEN_WIDTH := 1080
 
-PRODUCT_NAME := rr_leland
+PRODUCT_NAME := lineage_leland
 PRODUCT_DEVICE := leland
 PRODUCT_BRAND := Honor
 PRODUCT_MODEL := LLD-L31

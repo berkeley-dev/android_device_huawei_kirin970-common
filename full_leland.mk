@@ -26,7 +26,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_NAME := full_bkl
-PRODUCT_DEVICE := bkl
-PRODUCT_BRAND := Huawei
-PRODUCT_MODEL := Honor-View10
+PRODUCT_NAME := full_leland
+PRODUCT_DEVICE := leland
+PRODUCT_BRAND := Honor
+PRODUCT_MODEL := LLD-L31

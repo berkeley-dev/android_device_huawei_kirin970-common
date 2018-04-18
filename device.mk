@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product-if-exists, vendor/honor/bkl/bkl-vendor.mk)
+$(call inherit-product-if-exists, vendor/honor/leland/leland-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -25,8 +25,8 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Device init scripts
 PRODUCT_PACKAGES += \
-    init.kirin970.rc
-    init.kirin970.environ.rc
+    init.hi6250.rc \
+    init.hi6250.environ.rc
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
@@ -41,8 +41,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/compatibility_matrix.xml:system/compatibility_matrix.xml
 
 # KeyHandler
-PRODUCT_PACKAGES += \
-    org.lineageos.keyhandler
+#PRODUCT_PACKAGES += \
+#    org.lineageos.keyhandler
 
 # NFC
 PRODUCT_PACKAGES += \

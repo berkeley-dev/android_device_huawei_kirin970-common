@@ -14,5 +14,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo rr_bkl-userdebug
+add_lunch_combo rr_leland-userdebug
 

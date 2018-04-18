@@ -18,7 +18,7 @@
 set -e
 
 # Required!
-DEVICE=berkeley
+DEVICE=leland
 VENDOR=huawei
 
 # Load extractutils and do some sanity checks
