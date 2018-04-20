@@ -6,6 +6,7 @@
 /dev/block/bootdevice/by-name/hisee_fs          u:object_r:hisee_blkdev:s0
 /dev/block/bootdevice/by-name/sensorhub         u:object_r:shex_block_device:s0
 /dev/block/bootdevice/by-name/hisee_img         u:object_r:hisee_blkdev:s0
+/dev/block/bootdevice/by-name/secure_storage    u:object_r:secure_storage_block_device:s0
 /dev/block/bootdevice/by-name/splash2           u:object_r:splash2_block_device:s0
 
 # Cust Data
@@ -39,6 +40,12 @@
 /data/perf_data_hs.data         u:object_r:logcat_data_file:s0
 /data/android_logs(/.*)?                u:object_r:logcat_data_file:s0
 /data/log/fingerprint(/.*)?             u:object_r:logcat_data_file:s0
+
+# Secure storage
+/sec_storage            u:object_r:teecd_data_file:s0
+/sec_storage(/.*)?              u:object_r:teecd_data_file:s0
+/data/sec_storage_data          u:object_r:teecd_data_file:s0
+/data/sec_storage_data_users            u:object_r:teecd_data_file:s0
 
 # Splash2
 /splash2(/.*)?                                  u:object_r:splash2_data_file:s0
