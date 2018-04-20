@@ -14,6 +14,7 @@
 
 def FullOTA_InstallEnd(info):
     info.script.AppendExtra('mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system");');
-    info.script.AppendExtra('run_program("/sbin/sed", "-i", "/genfscon exfat/d", "/system/etc/selinux/plat_sepolicy.cil");');
-    info.script.AppendExtra('run_program("/sbin/sed", "-i", "/genfscon fuseblk/d", "/system/etc/selinux/plat_sepolicy.cil");');
+    info.script.AppendExtra('mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/vendor", "/vendor");');
+    info.script.AppendExtra('assert(run_program("/sbin/sh", "/tmp/install/bin/releasetools.kirin970.sh") == 0);')
     info.script.AppendExtra('unmount("/system");');
+    info.script.AppendExtra('unmount("/vendor");');
