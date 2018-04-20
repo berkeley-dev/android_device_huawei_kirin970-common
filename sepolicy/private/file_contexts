@@ -30,6 +30,9 @@
 /dev/hwlog_dubai        u:object_r:dubai_log_device:s0
 /dev/hwlog_switch       u:object_r:logcat_device:s0
 
+# IR blaster
+/dev/ttyAMA0            u:object_r:irda_device:s0
+
 # Logging (yes dumb...)
 /data/log(/.*)?         u:object_r:logcat_data_file:s0
 /data/log/gps(/.*)?     u:object_r:logcat_data_file:s0
@@ -40,6 +43,9 @@
 /data/perf_data_hs.data         u:object_r:logcat_data_file:s0
 /data/android_logs(/.*)?                u:object_r:logcat_data_file:s0
 /data/log/fingerprint(/.*)?             u:object_r:logcat_data_file:s0
+
+# pmom (?)
+/dev/pmom               u:object_r:pmom_device:s0
 
 # Secure storage
 /sec_storage(/.*)?              u:object_r:teecd_data_file:s0
