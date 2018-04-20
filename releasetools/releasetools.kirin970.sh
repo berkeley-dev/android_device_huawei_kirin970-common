@@ -66,10 +66,9 @@ if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.r
     sed -i "/\/data\/log\/fingerprint(\/.*)?/d" /system/etc/selinux/plat_file_contexts
 
     # Remove duplicated labels (Secure storage)
-    sed -i "/\/sec_storage/d" /system/etc/selinux/plat_file_contexts
     sed -i "/\/sec_storage(\/.*)?/d" /system/etc/selinux/plat_file_contexts
-    sed -i "/\/data\/sec_storage_data/d" /system/etc/selinux/plat_file_contexts
-    sed -i "/\/data\/sec_storage_data_users/d" /system/etc/selinux/plat_file_contexts
+    sed -i "/\/data\/sec_storage_data(\/.*)?/d" /system/etc/selinux/plat_file_contexts
+    sed -i "/\/data\/sec_storage_data_users(\/.*)?/d" /system/etc/selinux/plat_file_contexts
 
     # Remove duplicated labels (Splash2)
     sed -i "/\/splash2(\/.*)?/d" /system/etc/selinux/plat_file_contexts
