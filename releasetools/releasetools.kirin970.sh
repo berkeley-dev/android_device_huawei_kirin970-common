@@ -35,6 +35,7 @@ if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.r
     sed -i "/\/dev\/block\/bootdevice\/by-name\/hisee_img/d" /system/etc/selinux/plat_file_contexts
     sed -i "/\/dev\/block\/bootdevice\/by-name\/secure_storage/d" /system/etc/selinux/plat_file_contexts
     sed -i "/\/dev\/block\/bootdevice\/by-name\/splash2/d" /system/etc/selinux/plat_file_contexts
+    sed -i "/\/dev\/block\/zram0/d" /system/etc/selinux/plat_file_contexts
 
     # Remove duplicated labels (Cust Data)
     sed -i "/\/data\/custom.bin/d" /system/etc/selinux/plat_file_contexts
