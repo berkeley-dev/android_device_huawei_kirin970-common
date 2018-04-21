@@ -4,8 +4,11 @@
 sed -i "/genfscon exfat/d" /system/etc/selinux/plat_sepolicy.cil
 sed -i "/genfscon fuseblk/d" /system/etc/selinux/plat_sepolicy.cil
 
-# Remove definitions and labels that conflict with 8.0 vendor image
+# Fix logd service definition and SELinux for 8.0 vendor image
 if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.release=8.0.0" ]; then
+    # Fix logd service definition
+    sed -i "s/socket logdw dgram+passcred 0222 logd logd/socket logdw dgram 0222 logd logd/g" /system/etc/init/logd.rc
+
     # Remove duplicated type definitions
     sed -i "/(type cust_data_file)/d;/(roletype object_r cust_data_file)/d" /system/etc/selinux/plat_sepolicy.cil
     sed -i "/(type dmd_device)/d;/(roletype object_r dmd_device)/d" /system/etc/selinux/plat_sepolicy.cil
