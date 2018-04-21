@@ -38,6 +38,7 @@ endif
 # Device init scripts
 PRODUCT_PACKAGES += \
     init.kirin970.rc \
+    init.kirin970.ab.rc \
     init.kirin970.environ.rc
 
 # Display
