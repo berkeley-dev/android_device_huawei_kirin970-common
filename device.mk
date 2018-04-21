@@ -26,6 +26,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 # Device init scripts
 PRODUCT_PACKAGES += \
     init.hi6250.rc \
+    init.hi6250.ab.rc \
     init.hi6250.environ.rc
 
 # Device uses high-density artwork where available
