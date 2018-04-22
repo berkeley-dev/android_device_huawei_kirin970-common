@@ -18,7 +18,7 @@
 set -e
 
 DEVICE=leland
-VENDOR=huawei
+VENDOR=honor
 
 # Load extractutils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"

@@ -29,4 +29,5 @@ $(call inherit-product, $(LOCAL_PATH)/device.mk)
 PRODUCT_NAME := full_leland
 PRODUCT_DEVICE := leland
 PRODUCT_BRAND := Honor
-PRODUCT_MODEL := LLD-L31
+PRODUCT_MODEL := Honor 9 Lite
+PRODUCT_MANUFACTURER := Huawei
