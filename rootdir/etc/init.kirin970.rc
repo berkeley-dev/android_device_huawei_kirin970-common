@@ -2,6 +2,8 @@ on init
     mount none /system/usr/keylayout/fingerprint.kl /vendor/usr/keylayout/fingerprint.kl bind
 
 on property:sys.boot_completed=1
+    write /sys/class/hw_power/charger/direct_charger/iin_thermal 4500
+    write /sys/class/hw_power/charger/charge_data/iin_thermal 2000
     stop displayengine-hal-1-0
     stop hisupl_service
 
