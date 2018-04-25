@@ -66,7 +66,7 @@ public class HwRadioResponse extends RadioResponse {
         RILRequest rr = mHwRil.processResp(responseInfo);
 
         if (rr != null) {
-            SignalStrength ret = HwRIL.convertHalSignalStrength(sigStrength);
+            SignalStrength ret = HwRIL.convertHalSignalStrength(sigStrength, mHwRil);
             if (responseInfo.error == RadioError.NONE) {
                 sendMessageResponse(rr.getResult(), ret);
             }
