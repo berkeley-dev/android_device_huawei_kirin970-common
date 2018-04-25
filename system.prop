@@ -10,3 +10,6 @@ ro.adb.secure=1
 
 # Perf
 ro.vendor.qti.sys.fw.bg_apps_limit=60
+
+# Radio
+ro.telephony.ril.config=huaweiSignalStrength
