@@ -1,3 +1,17 @@
+# Camera
+-priv-app/HwCamera2/HwCamera2.apk
+priv-app/HwCamera2/lib/arm/libjni_front_panorama_camera2.so
+priv-app/HwCamera2/lib/arm/libmorpho_memory_allocator.so
+priv-app/HwCamera2/lib/arm/libscanner.so
+priv-app/HwCamera2/lib/arm/libmorpho_panorama_gp.so
+priv-app/HwCamera2/lib/arm/libIvw35.so
+priv-app/HwCamera2/lib/arm/libjni_mrc_cg_filters_camera2.so
+priv-app/HwCamera2/lib/arm/libTargetTracking.so
+priv-app/HwCamera2/lib/arm/libtrack.so
+priv-app/HwCamera2/lib/arm/libfyusenet.so
+priv-app/HwCamera2/lib/arm/libHW_Pano_f.so
+priv-app/HwCamera2/lib/arm/libJniVoiceCapture.so
+
 # Charger
 etc/charger/1080x1920/battery_01.png
 etc/charger/1080x1920/battery_02.png
