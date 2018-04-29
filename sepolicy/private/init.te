@@ -4,5 +4,8 @@ domain_trans(init, rootfs, adbd)
 allow init userdata_block_device:blk_file relabelto;
 allow init userdata_block_device:lnk_file relabelto;
 
+# Allow init to mount adbd binary
+allow init rootfs:file mounton;
+
 # Allow init to mount fingerprint keylayout
 allow init vendor_file:file mounton;
