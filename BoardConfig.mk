@@ -62,6 +62,7 @@ TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.hi6250
+BOARD_PROVIDES_BOOTLOADER_MESSAGE := true
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
