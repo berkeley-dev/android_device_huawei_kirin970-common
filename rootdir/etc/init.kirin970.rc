@@ -6,7 +6,6 @@ on init
 on property:sys.boot_completed=1
     write /sys/class/hw_power/charger/direct_charger/iin_thermal 4500
     write /sys/class/hw_power/charger/charge_data/iin_thermal 2000
-    stop displayengine-hal-1-0
 
 on property:sys.fpnav.enabled=0
     write /sys/devices/platform/fingerprint/nav 0
