@@ -1,3 +1,6 @@
+# bfm
+/dev/hw_bfm             u:object_r:bfmr_device:s0
+
 # Block Devices
 /dev/block/bootdevice/by-name/modem_om          u:object_r:make_ext4fs_blkdev:s0
 /dev/block/bootdevice/by-name/3rdmodem          u:object_r:thirdmodem_block_device:s0

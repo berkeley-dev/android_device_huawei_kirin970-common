@@ -1,3 +1,4 @@
+type bfmr_device, dev_type;
 type cust_data_file, coredomain_socket, data_file_type, file_type;
 type dmd_device, dev_type;
 type dubai_log_device, dev_type, mlstrustedobject;

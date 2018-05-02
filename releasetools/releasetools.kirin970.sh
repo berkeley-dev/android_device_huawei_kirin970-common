@@ -31,6 +31,7 @@ if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.r
     echo "(typeattributeset displayengine_hwservice_26_0 (displayengine_hwservice))" >> /system/etc/selinux/mapping/26.0.cil
 
     # Remove duplicated type definitions
+    sed -i "/(type bfmr_device)/d;/(roletype object_r bfmr_device)/d" /system/etc/selinux/plat_sepolicy.cil
     sed -i "/(type cust_data_file)/d;/(roletype object_r cust_data_file)/d" /system/etc/selinux/plat_sepolicy.cil
     sed -i "/(type dmd_device)/d;/(roletype object_r dmd_device)/d" /system/etc/selinux/plat_sepolicy.cil
     sed -i "/(type exception_device)/d;/(roletype object_r exception_device)/d" /system/etc/selinux/plat_sepolicy.cil
@@ -49,6 +50,9 @@ if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.r
     sed -i "/(type thirdmodem_block_device)/d;/(roletype object_r thirdmodem_block_device)/d" /system/etc/selinux/plat_sepolicy.cil
     sed -i "/(type thirdmodemnvmbkp_block_device)/d;/(roletype object_r thirdmodemnvmbkp_block_device)/d" /system/etc/selinux/plat_sepolicy.cil
     sed -i "/(type thirdmodemnvm_block_device)/d;/(roletype object_r thirdmodemnvm_block_device)/d" /system/etc/selinux/plat_sepolicy.cil
+
+    # Remove duplicated labels (bfm)
+    sed -i "/\/dev\/hw_bfm/d" /system/etc/selinux/plat_file_contexts
 
     # Remove duplicated labels (Block Devices)
     sed -i "/\/dev\/block\/bootdevice\/by-name\/3rdmodem/d" /system/etc/selinux/plat_file_contexts
