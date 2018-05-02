@@ -11,3 +11,9 @@ on property:sys.boot_completed=1
 #    write /sys/devices/platform/fingerprint/nav 1
 #    stop fps_hal_ext
 #    start fps_hal_ext
+
+service hisupl_service_local /vendor/bin/hw/vendor.huawei.hardware.hisupl@1.0-service
+    class hal
+    user system
+    group system
+    setenv LD_PRELOAD libshims_hisupl.so
