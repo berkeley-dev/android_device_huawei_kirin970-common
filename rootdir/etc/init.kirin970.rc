@@ -20,3 +20,9 @@ on property:sys.fpnav.enabled=1
 
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
+
+service hisupl_service_local /vendor/bin/hw/vendor.huawei.hardware.hisupl@1.0-service
+    class hal
+    user system
+    group system
+    setenv LD_PRELOAD libshims_hisupl.so
