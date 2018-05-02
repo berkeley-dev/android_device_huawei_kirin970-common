@@ -1,1 +1,2 @@
 sys.vndk.ldconfig    u:object_r:vndk_detect_prop:s0
+huawei.check_root.   u:object_r:check_root_prop:s0
