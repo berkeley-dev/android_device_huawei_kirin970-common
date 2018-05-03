@@ -17,8 +17,9 @@
 package com.android.server.display;
 
 import android.os.IBinder;
-import android.os.ServiceManager;
 import android.os.Parcel;
+import android.os.PersistableBundle;
+import android.os.ServiceManager;
 
 public class DisplayEngineService {
     public static final int DE_ACTION_START = 0;
@@ -88,14 +89,34 @@ public class DisplayEngineService {
     private static final String DESCRIPTOR = "com.huawei.displayengine.IDisplayEngineService";
     private static final int TRANSACTION_getSupported = 1;
     private static final int TRANSACTION_setScene = 2;
-    private static final int TRANSACTION_getEffect = 4;
     private static final int TRANSACTION_setData = 3;
+    private static final int TRANSACTION_getEffect = 4;
     private static final int TRANSACTION_setEffect = 5;
 
     private static IBinder sDisplayEngineService;
 
     static {
         sDisplayEngineService = ServiceManager.getService("DisplayEngineService");
+    }
+
+    public int getSupported(int feature) {
+        if (sDisplayEngineService == null) {
+            return -1;
+        }
+
+        try {
+            Parcel data = Parcel.obtain();
+            Parcel reply = Parcel.obtain();
+
+            data.writeInterfaceToken(DESCRIPTOR);
+            data.writeInt(feature);
+
+            sDisplayEngineService.transact(TRANSACTION_getSupported, data, reply, 0);
+
+            return reply.readInt();
+        } catch (Throwable t) {
+            return -1;
+        }
     }
 
     public int setScene(int scene, int action) {
@@ -112,6 +133,84 @@ public class DisplayEngineService {
             data.writeInt(action);
 
             sDisplayEngineService.transact(TRANSACTION_setScene, data, reply, 0);
+
+            return reply.readInt();
+        } catch (Throwable t) {
+            return -1;
+        }
+    }
+
+    public int setData(int type, PersistableBundle bundleData) {
+        if (sDisplayEngineService == null) {
+            return -1;
+        }
+
+        try {
+            Parcel data = Parcel.obtain();
+            Parcel reply = Parcel.obtain();
+
+            data.writeInterfaceToken(DESCRIPTOR);
+            data.writeInt(type);
+
+            if (bundleData != null) {
+                data.writeInt(1);
+                bundleData.writeToParcel(data, 0);
+            } else {
+                data.writeInt(0);
+            }
+
+            sDisplayEngineService.transact(TRANSACTION_setData, data, reply, 0);
+
+            return reply.readInt();
+        } catch (Throwable t) {
+            return -1;
+        }
+    }
+
+    public int getEffect(int feature, int type, byte[] status, int length) {
+        if (sDisplayEngineService == null) {
+            return -1;
+        }
+
+        try {
+            Parcel data = Parcel.obtain();
+            Parcel reply = Parcel.obtain();
+
+            data.writeInterfaceToken(DESCRIPTOR);
+            data.writeInt(feature);
+            data.writeInt(type);
+            data.writeByteArray(status);
+            data.writeInt(length);
+
+            sDisplayEngineService.transact(TRANSACTION_getEffect, data, reply, 0);
+
+            return reply.readInt();
+        } catch (Throwable t) {
+            return -1;
+        }
+    }
+
+    public int setEffect(int feature, int mode, PersistableBundle bundleData) {
+        if (sDisplayEngineService == null) {
+            return -1;
+        }
+
+        try {
+            Parcel data = Parcel.obtain();
+            Parcel reply = Parcel.obtain();
+
+            data.writeInterfaceToken(DESCRIPTOR);
+            data.writeInt(feature);
+            data.writeInt(mode);
+
+            if (bundleData != null) {
+                data.writeInt(1);
+                bundleData.writeToParcel(data, 0);
+            } else {
+                data.writeInt(0);
+            }
+
+            sDisplayEngineService.transact(TRANSACTION_setEffect, data, reply, 0);
 
             return reply.readInt();
         } catch (Throwable t) {
