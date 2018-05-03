@@ -1,0 +1,24 @@
+type displayengineserver, coredomain, domain;
+type displayengineserver_exec, exec_type, file_type;
+typeattribute displayengineserver halclientdomain;
+
+# Allow for transition from init domain to displayengineserver
+init_daemon_domain(displayengineserver)
+
+# Allow displayengineserver to use binder service
+binder_use(displayengineserver)
+
+# Allow binder communication with surfaceflinger
+binder_call(displayengineserver, surfaceflinger)
+
+# Allow displayengineserver to read and execute vendor_file
+allow displayengineserver vendor_file:file rx_file_perms;
+
+# Allow displayengineserver to add and find display_engine_service
+allow displayengineserver display_engine_service:service_manager { add find };
+
+# Allow displayengineserver to find displayengine_hwservice
+allow displayengineserver displayengine_hwservice:hwservice_manager find;
+
+# Allow displayengineserver to find surfaceflinger_service
+allow displayengineserver surfaceflinger_service:service_manager find;

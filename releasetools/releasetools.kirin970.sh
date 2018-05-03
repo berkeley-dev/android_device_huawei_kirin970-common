@@ -24,10 +24,8 @@ if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.r
     # Fix logd service definition
     sed -i "s/socket logdw dgram+passcred 0222 logd logd/socket logdw dgram 0222 logd logd/g" /system/etc/init/logd.rc
 
-    # Add type and mapping for displayengine-hal-1.0
-    echo "(typeattributeset hwservice_manager_type (displayengine_hwservice))" >> /system/etc/selinux/plat_sepolicy.cil
-    echo "(type displayengine_hwservice)" >> /system/etc/selinux/plat_sepolicy.cil
-    echo "(roletype object_r displayengine_hwservice)" >> /system/etc/selinux/plat_sepolicy.cil
+    # Add mapping for displayengine-hal-1.0
+    echo "(typeattributeset displayengineserver_26_0 (displayengineserver))" >> /system/etc/selinux/mapping/26.0.cil
     echo "(typeattributeset displayengine_hwservice_26_0 (displayengine_hwservice))" >> /system/etc/selinux/mapping/26.0.cil
 
     # Remove duplicated type definitions
