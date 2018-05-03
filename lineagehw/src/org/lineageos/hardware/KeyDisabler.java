@@ -16,33 +16,48 @@
 
 package org.lineageos.hardware;
 
-import android.os.SystemProperties;
+import vendor.huawei.hardware.biometrics.fingerprint.V2_1.ExtBiometricsFingerprint;
 
 /*
  * Disable fingerprint gestures
  */
 public class KeyDisabler {
-    private static String FPNAV_ENABLED_PROP = "sys.fpnav.enabled";
+    private static ExtBiometricsFingerprint sExtBiometricsFingerprint;
+    private static boolean sFingerprintNavEnabled;
+
+    static {
+        try {
+            sExtBiometricsFingerprint = new ExtBiometricsFingerprint();
+        } catch (Throwable t) {
+            // Ignore, IExtBiometricsFingerprint is not available.
+        }
+    }
 
     /*
      * Always return true in our case
      */
     public static boolean isSupported() {
-        return true;
+        return sExtBiometricsFingerprint != null;
     }
 
     /*
      * Are the fingerprint gestures currently disabled?
      */
     public static boolean isActive() {
-        return SystemProperties.get(FPNAV_ENABLED_PROP, "0").equals("1");
+        return sFingerprintNavEnabled;
     }
 
     /*
      * Disable fingerprint gestures
      */
     public static boolean setActive(boolean state) {
-        SystemProperties.set(FPNAV_ENABLED_PROP, state ? "0" : "1");
+        if (sExtBiometricsFingerprint == null) {
+            return false;
+        }
+        sFingerprintNavEnabled = state;
+        sExtBiometricsFingerprint.sendCmdToHal(sFingerprintNavEnabled
+                ? ExtBiometricsFingerprint.MSG_NAV_DISABLE
+                : ExtBiometricsFingerprint.MSG_NAV_ENABLE);
         return true;
     }
 }
