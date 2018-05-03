@@ -59,7 +59,7 @@ public class DisplayModeControl {
             sHwSmartDisplayService.init_native();
 
             sColorEnhancementSupported = sHwSmartDisplayService.nativeGetFeatureSupported(
-                    MODE_COLOR_ENHANCEMENT) == LEVEL_COLOR_ENHANCEMENT_SUPPORT_HIGH;
+                    MODE_COLOR_ENHANCEMENT) == LEVEL_COLOR_ENHANCEMENT_SUPPORT_HIGH || true;
             sColorEnhancementCurrentMode = 0;
 
             if (FileUtils.isFileReadable(DEFAULT_PATH)) {
