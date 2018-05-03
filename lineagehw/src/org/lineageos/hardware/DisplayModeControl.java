@@ -16,8 +16,7 @@
 
 package org.lineageos.hardware;
 
-import android.util.Log;
-import com.android.server.HwSmartDisplayService;
+import com.android.server.display.DisplayEngineService;
 
 import lineageos.hardware.DisplayMode;
 import org.lineageos.internal.util.FileUtils;
@@ -35,31 +34,18 @@ import org.lineageos.internal.util.FileUtils;
  */
 
 public class DisplayModeControl {
-
-    private static final int LEVEL_COLOR_ENHANCEMENT_SUPPORT_NONE = 0;
-    private static final int LEVEL_COLOR_ENHANCEMENT_SUPPORT_LOW = 1;
-    private static final int LEVEL_COLOR_ENHANCEMENT_SUPPORT_HIGH = 2;
-
-    private static final int MODE_COMFORT = 1;
-    private static final int MODE_COLOR_ENHANCEMENT = 2;
-
     private static final String DEFAULT_PATH = "/data/misc/.displaymodedefault";
     private static final DisplayMode[] DISPLAY_MODES = {
         new DisplayMode(0, "Normal"),
         new DisplayMode(1, "Vivid"),
     };
 
-    private static HwSmartDisplayService sHwSmartDisplayService;
-    private static boolean sColorEnhancementSupported;
+    private static DisplayEngineService sDisplayEngineService;
     private static int sColorEnhancementCurrentMode;
 
     static {
         try {
-            sHwSmartDisplayService = new HwSmartDisplayService();
-            sHwSmartDisplayService.init_native();
-
-            sColorEnhancementSupported = sHwSmartDisplayService.nativeGetFeatureSupported(
-                    MODE_COLOR_ENHANCEMENT) == LEVEL_COLOR_ENHANCEMENT_SUPPORT_HIGH || true;
+            sDisplayEngineService = new DisplayEngineService();
             sColorEnhancementCurrentMode = 0;
 
             if (FileUtils.isFileReadable(DEFAULT_PATH)) {
@@ -69,8 +55,7 @@ public class DisplayModeControl {
                 setMode(getCurrentMode(), true);
             }
         } catch (Throwable t) {
-            sColorEnhancementSupported = false;
-            sColorEnhancementCurrentMode = 0;
+            // Ignore, DisplayEngineService not available.
         }
     }
 
@@ -79,7 +64,7 @@ public class DisplayModeControl {
      * Real implementations must, of course, return true
      */
     public static boolean isSupported() {
-        return sHwSmartDisplayService != null && sColorEnhancementSupported &&
+        return sDisplayEngineService != null &&
                 FileUtils.isFileWritable(DEFAULT_PATH) &&
                 FileUtils.isFileReadable(DEFAULT_PATH);
     }
@@ -92,7 +77,7 @@ public class DisplayModeControl {
      * map the name to a human-readable format or perform translation.
      */
     public static DisplayMode[] getAvailableModes() {
-        if (sHwSmartDisplayService == null || !sColorEnhancementSupported) {
+        if (sDisplayEngineService == null) {
             return new DisplayMode[0];
         }
         return DISPLAY_MODES;
@@ -103,7 +88,7 @@ public class DisplayModeControl {
      * null if no mode is selected.
      */
     public static DisplayMode getCurrentMode() {
-        if (sHwSmartDisplayService == null || !sColorEnhancementSupported) {
+        if (sDisplayEngineService == null) {
             return null;
         }
         return DISPLAY_MODES[sColorEnhancementCurrentMode];
@@ -116,12 +101,17 @@ public class DisplayModeControl {
      * if this mode is valid.
      */
     public static boolean setMode(DisplayMode mode, boolean makeDefault) {
-        if (sHwSmartDisplayService == null || !sColorEnhancementSupported) {
+        if (sDisplayEngineService == null) {
             return false;
         }
         sColorEnhancementCurrentMode = mode.id;
-        sHwSmartDisplayService.nativeSetSmartDisplay(MODE_COLOR_ENHANCEMENT,
-                sColorEnhancementCurrentMode);
+        if (sColorEnhancementCurrentMode == 0) {
+            sDisplayEngineService.setScene(DisplayEngineService.DE_SCENE_COLORMODE,
+                    DisplayEngineService.DE_ACTION_MODE_OFF);
+        } else if (sColorEnhancementCurrentMode == 1) {
+            sDisplayEngineService.setScene(DisplayEngineService.DE_SCENE_COLORMODE,
+                    DisplayEngineService.DE_ACTION_MODE_ON);
+        }
         if (makeDefault) {
             FileUtils.writeLine(DEFAULT_PATH, String.valueOf(sColorEnhancementCurrentMode));
         }
@@ -133,7 +123,7 @@ public class DisplayModeControl {
      * string identifier. Can return null if there is no default.
      */
     public static DisplayMode getDefaultMode() {
-        if (sHwSmartDisplayService == null || !sColorEnhancementSupported) {
+        if (sDisplayEngineService == null) {
             return null;
         }
         try {
