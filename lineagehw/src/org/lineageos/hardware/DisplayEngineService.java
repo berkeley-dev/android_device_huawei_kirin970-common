@@ -60,6 +60,9 @@ public class DisplayEngineService {
     public static final int DE_ACTION_PG_CAMERA_END = 10017;
     public static final int DE_ACTION_PG_MAX = 10018;
 
+    public static final int DE_ALGORITHM_IMAGEPROCESS = 0;
+    public static final int DE_ALGORITHM_MAX = 1;
+
     public static final int DE_DATA_TYPE_IMAGE = 0;
     public static final int DE_DATA_TYPE_VIDEO = 1;
     public static final int DE_DATA_TYPE_VIDEO_HDR10 = 2;
