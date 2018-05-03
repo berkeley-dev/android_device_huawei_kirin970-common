@@ -60,6 +60,17 @@ public class DisplayEngineService {
     public static final int DE_ACTION_PG_CAMERA_END = 10017;
     public static final int DE_ACTION_PG_MAX = 10018;
 
+    public static final int DE_DATA_TYPE_IMAGE = 0;
+    public static final int DE_DATA_TYPE_VIDEO = 1;
+    public static final int DE_DATA_TYPE_VIDEO_HDR10 = 2;
+    public static final int DE_DATA_TYPE_CAMERA = 3;
+    public static final int DE_DATA_TYPE_IMAGE_INFO = 4;
+    public static final int DE_DATA_TYPE_XNIT = 5;
+    public static final int DE_DATA_TYPE_XNIT_BRIGHTLEVEL = 6;
+    public static final int DE_DATA_TYPE_3D_COLORTEMP = 7;
+    public static final int DE_DATA_TYPE_RGLED = 8;
+    public static final int DE_DATA_MAX = 9;
+
     public static final int DE_FEATURE_SHARP = 0;
     public static final int DE_FEATURE_CONTRAST = 1;
     public static final int DE_FEATURE_BLC = 2;
