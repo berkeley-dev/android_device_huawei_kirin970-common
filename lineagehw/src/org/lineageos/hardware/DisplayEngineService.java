@@ -60,6 +60,29 @@ public class DisplayEngineService {
     public static final int DE_ACTION_PG_CAMERA_END = 10017;
     public static final int DE_ACTION_PG_MAX = 10018;
 
+    public static final int DE_FEATURE_SHARP = 0;
+    public static final int DE_FEATURE_CONTRAST = 1;
+    public static final int DE_FEATURE_BLC = 2;
+    public static final int DE_FEATURE_GMP = 3;
+    public static final int DE_FEATURE_XCC = 4;
+    public static final int DE_FEATURE_HUE = 5;
+    public static final int DE_FEATURE_SAT = 6;
+    public static final int DE_FEATURE_GAMMA = 7;
+    public static final int DE_FEATURE_IGAMMA = 8;
+    public static final int DE_FEATURE_LRE = 9;
+    public static final int DE_FEATURE_SRE = 10;
+    public static final int DE_FEATURE_COLORMODE = 11;
+    public static final int DE_FEATURE_CABC = 12;
+    public static final int DE_FEATURE_RGBW = 13;
+    public static final int DE_FEATURE_PANELINFO = 14;
+    public static final int DE_FEATURE_HDR10 = 15;
+    public static final int DE_FEATURE_XNIT = 16;
+    public static final int DE_FEATURE_EYE_PROTECT = 17;
+    public static final int DE_FEATURE_3D_COLOR_TEMPERATURE = 18;
+    public static final int DE_FEATURE_RGLED = 19;
+    public static final int DE_FEATURE_HBM = 20;
+    public static final int DE_FEATURE_MAX = 21;
+
     public static final int DE_SCENE_PG = 0;
     public static final int DE_SCENE_VIDEO = 1;
     public static final int DE_SCENE_VIDEO_HDR10 = 2;
