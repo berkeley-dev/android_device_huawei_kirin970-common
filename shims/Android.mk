@@ -26,3 +26,10 @@ LOCAL_SHARED_LIBRARIES := libhardware liblog
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := hwsmartdisplay_jni.c
+
+LOCAL_MODULE := libshims_hwsmartdisplay_jni
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_SHARED_LIBRARY)

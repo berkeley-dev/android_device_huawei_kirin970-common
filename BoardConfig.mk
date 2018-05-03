@@ -66,3 +66,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
 # SELinux
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
+
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/lib64/libhwsmartdisplay_jni.so|libshims_hwsmartdisplay_jni.so
