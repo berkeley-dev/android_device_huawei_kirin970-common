@@ -74,6 +74,8 @@ public class DisplayEngineService {
     public static final int DE_DATA_TYPE_RGLED = 8;
     public static final int DE_DATA_MAX = 9;
 
+    public static final int DE_EFFECT_TYPE_PANEL_NAME = 0;
+
     public static final int DE_FEATURE_SHARP = 0;
     public static final int DE_FEATURE_CONTRAST = 1;
     public static final int DE_FEATURE_BLC = 2;
