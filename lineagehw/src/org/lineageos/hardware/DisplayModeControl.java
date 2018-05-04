@@ -65,6 +65,8 @@ public class DisplayModeControl {
      */
     public static boolean isSupported() {
         return sDisplayEngineService != null &&
+                sDisplayEngineService.getSupported(
+                        DisplayEngineService.DE_FEATURE_COLORMODE) == 1 &&
                 FileUtils.isFileWritable(DEFAULT_PATH) &&
                 FileUtils.isFileReadable(DEFAULT_PATH);
     }
