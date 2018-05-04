@@ -48,6 +48,9 @@ public class DisplayModeControl {
             sDisplayEngineService = new DisplayEngineService();
             sColorEnhancementCurrentMode = 0;
 
+            sDisplayEngineService.setScene(DisplayEngineService.DE_SCENE_POWERMODE,
+                    DisplayEngineService.DE_ACTION_MODE_ON);
+
             if (FileUtils.isFileReadable(DEFAULT_PATH)) {
                 setMode(getDefaultMode(), false);
             } else {
