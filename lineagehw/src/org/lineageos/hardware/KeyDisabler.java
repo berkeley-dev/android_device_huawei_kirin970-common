@@ -56,8 +56,8 @@ public class KeyDisabler {
         }
         sFingerprintNavEnabled = state;
         sExtBiometricsFingerprint.sendCmdToHal(sFingerprintNavEnabled
-                ? ExtBiometricsFingerprint.MSG_NAV_DISABLE
-                : ExtBiometricsFingerprint.MSG_NAV_ENABLE);
+                ? ExtBiometricsFingerprint.MMI_TYPE_NAV_DISABLE
+                : ExtBiometricsFingerprint.MMI_TYPE_NAV_ENABLE);
         return true;
     }
 }

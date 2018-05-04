@@ -22,8 +22,8 @@ import android.os.IHwBinder;
 import android.os.RemoteException;
 
 public class ExtBiometricsFingerprint {
-    public static int MSG_NAV_ENABLE = 41;
-    public static int MSG_NAV_DISABLE = 42;
+    public static final int MMI_TYPE_NAV_ENABLE = 41;
+    public static final int MMI_TYPE_NAV_DISABLE = 42;
 
     private static final String DESCRIPTOR =
             "vendor.huawei.hardware.biometrics.fingerprint@2.1::IExtBiometricsFingerprint";
