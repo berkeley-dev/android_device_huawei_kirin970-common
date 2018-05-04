@@ -40,18 +40,23 @@ public class ExtBiometricsFingerprint {
             return -1;
         }
 
-        try {
-            HwParcel data = new HwParcel();
-            HwParcel reply = new HwParcel();
+        HwParcel data = new HwParcel();
+        HwParcel reply = new HwParcel();
 
+        try {
             data.writeInterfaceToken(DESCRIPTOR);
             data.writeInt32(cmdId);
 
             sBiometricsFingerprint.transact(TRANSACTION_sendCmdToHal, data, reply, 0);
 
+            reply.verifySuccess();
+            data.releaseTemporaryStorage();
+
             return reply.readInt32();
         } catch (Throwable t) {
             return -1;
+        } finally {
+            reply.release();
         }
     }
 }
