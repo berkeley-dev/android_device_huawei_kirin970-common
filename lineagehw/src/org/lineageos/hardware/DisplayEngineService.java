@@ -143,18 +143,22 @@ public class DisplayEngineService {
             return -1;
         }
 
-        try {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
+        Parcel data = Parcel.obtain();
+        Parcel reply = Parcel.obtain();
 
+        try {
             data.writeInterfaceToken(DESCRIPTOR);
             data.writeInt(feature);
 
             sDisplayEngineService.transact(TRANSACTION_getSupported, data, reply, 0);
 
+            reply.readException();
             return reply.readInt();
         } catch (Throwable t) {
             return -1;
+        } finally {
+            data.recycle();
+            reply.recycle();
         }
     }
 
@@ -163,19 +167,23 @@ public class DisplayEngineService {
             return -1;
         }
 
-        try {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
+        Parcel data = Parcel.obtain();
+        Parcel reply = Parcel.obtain();
 
+        try {
             data.writeInterfaceToken(DESCRIPTOR);
             data.writeInt(scene);
             data.writeInt(action);
 
             sDisplayEngineService.transact(TRANSACTION_setScene, data, reply, 0);
 
+            reply.readException();
             return reply.readInt();
         } catch (Throwable t) {
             return -1;
+        } finally {
+            data.recycle();
+            reply.recycle();
         }
     }
 
@@ -184,10 +192,10 @@ public class DisplayEngineService {
             return -1;
         }
 
-        try {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
+        Parcel data = Parcel.obtain();
+        Parcel reply = Parcel.obtain();
 
+        try {
             data.writeInterfaceToken(DESCRIPTOR);
             data.writeInt(type);
 
@@ -200,9 +208,13 @@ public class DisplayEngineService {
 
             sDisplayEngineService.transact(TRANSACTION_setData, data, reply, 0);
 
+            reply.readException();
             return reply.readInt();
         } catch (Throwable t) {
             return -1;
+        } finally {
+            data.recycle();
+            reply.recycle();
         }
     }
 
@@ -211,10 +223,10 @@ public class DisplayEngineService {
             return -1;
         }
 
-        try {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
+        Parcel data = Parcel.obtain();
+        Parcel reply = Parcel.obtain();
 
+        try {
             data.writeInterfaceToken(DESCRIPTOR);
             data.writeInt(feature);
             data.writeInt(type);
@@ -223,9 +235,13 @@ public class DisplayEngineService {
 
             sDisplayEngineService.transact(TRANSACTION_getEffect, data, reply, 0);
 
+            reply.readException();
             return reply.readInt();
         } catch (Throwable t) {
             return -1;
+        } finally {
+            data.recycle();
+            reply.recycle();
         }
     }
 
@@ -234,10 +250,10 @@ public class DisplayEngineService {
             return -1;
         }
 
-        try {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
+        Parcel data = Parcel.obtain();
+        Parcel reply = Parcel.obtain();
 
+        try {
             data.writeInterfaceToken(DESCRIPTOR);
             data.writeInt(feature);
             data.writeInt(mode);
@@ -251,9 +267,13 @@ public class DisplayEngineService {
 
             sDisplayEngineService.transact(TRANSACTION_setEffect, data, reply, 0);
 
+            reply.readException();
             return reply.readInt();
         } catch (Throwable t) {
             return -1;
+        } finally {
+            data.recycle();
+            reply.recycle();
         }
     }
 }
