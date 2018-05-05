@@ -16,7 +16,10 @@
 
 package org.lineageos.hardware;
 
+import android.os.SystemProperties;
 import com.android.server.display.DisplayEngineService;
+import com.android.server.display.DisplayEngineService_V1_0;
+import com.android.server.display.DisplayEngineService_V1_1;
 
 import lineageos.hardware.DisplayMode;
 import org.lineageos.internal.util.FileUtils;
@@ -40,16 +43,22 @@ public class DisplayModeControl {
         new DisplayMode(1, "Vivid"),
     };
 
+    private static final String DISPLAY_ENGINE_V1_0_PROP = "init.svc.displayengine-hal-1-0";
+    private static final String DISPLAY_ENGINE_V1_1_PROP = "init.svc.displayengine-hal-1-1";
+
     private static DisplayEngineService sDisplayEngineService;
     private static int sColorEnhancementCurrentMode;
 
     static {
         try {
-            sDisplayEngineService = new DisplayEngineService();
+            if (SystemProperties.get(DISPLAY_ENGINE_V1_0_PROP, "") != "") {
+                sDisplayEngineService = new DisplayEngineService_V1_0();
+            } else if (SystemProperties.get(DISPLAY_ENGINE_V1_1_PROP, "") != "") {
+                sDisplayEngineService = new DisplayEngineService_V1_1();
+            }
             sColorEnhancementCurrentMode = 0;
 
-            sDisplayEngineService.setScene(DisplayEngineService.DE_SCENE_POWERMODE,
-                    DisplayEngineService.DE_ACTION_MODE_ON);
+            sDisplayEngineService.enablePowerMode(true);
 
             if (FileUtils.isFileReadable(DEFAULT_PATH)) {
                 setMode(getDefaultMode(), false);
@@ -68,8 +77,7 @@ public class DisplayModeControl {
      */
     public static boolean isSupported() {
         return sDisplayEngineService != null &&
-                sDisplayEngineService.getSupported(
-                        DisplayEngineService.DE_FEATURE_COLORMODE) == 1 &&
+                sDisplayEngineService.isColorModeSupported() &&
                 FileUtils.isFileWritable(DEFAULT_PATH) &&
                 FileUtils.isFileReadable(DEFAULT_PATH);
     }
@@ -111,11 +119,9 @@ public class DisplayModeControl {
         }
         sColorEnhancementCurrentMode = mode.id;
         if (sColorEnhancementCurrentMode == 0) {
-            sDisplayEngineService.setScene(DisplayEngineService.DE_SCENE_COLORMODE,
-                    DisplayEngineService.DE_ACTION_MODE_OFF);
+            sDisplayEngineService.enableColorMode(false);
         } else if (sColorEnhancementCurrentMode == 1) {
-            sDisplayEngineService.setScene(DisplayEngineService.DE_SCENE_COLORMODE,
-                    DisplayEngineService.DE_ACTION_MODE_ON);
+            sDisplayEngineService.enableColorMode(true);
         }
         if (makeDefault) {
             FileUtils.writeLine(DEFAULT_PATH, String.valueOf(sColorEnhancementCurrentMode));
