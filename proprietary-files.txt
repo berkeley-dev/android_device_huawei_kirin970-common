@@ -2613,11 +2613,15 @@ etc/charger/800x1280/scp_charging_22.png
 etc/charger/800x1280/scp_charging_23.png
 etc/charger/800x1280/scp_empty_charge.png
 
-# Display engine
-bin/displayengineserver
-etc/init/displayengineserver.rc
-lib/libdisplayengineservice.so
-lib64/libdisplayengineservice.so
+# Display engine @ 1.0
+bin/displayengineserver:bin/displayengineserver@1.0|72dc892140456b1846ca845df1fee3b070cc0955
+lib/libdisplayengineservice.so:lib/libdisplayenginesvc_1_0.so|4b66a6c52f8233d83729196f438f2718ec854565
+lib64/libdisplayengineservice.so:lib64/libdisplayenginesvc_1_0.so|b9601b7342cad5a76073b23cd2430dd089a88e89
+
+# Display engine @ 1.1
+bin/displayengineserver:bin/displayengineserver@1.1|5c5a704b6b3bc145001d22f108d2daf685ffbdda
+lib/libdisplayengineservice.so:lib/libdisplayenginesvc_1_1.so|3a9143552436dc0bc7dedca89141616ff4ebec77
+lib64/libdisplayengineservice.so:lib64/libdisplayenginesvc_1_1.so|0330a428a6a8259cf916ff724f6ac891388f8df7
 
 # SmartDisplay
 lib/libhwsmartdisplay_jni.so

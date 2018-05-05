@@ -23,7 +23,8 @@
 /data/custom_cota\.bin          u:object_r:cust_data_file:s0
 
 # Display engine
-/system/bin/displayengineserver    u:object_r:displayengineserver_exec:s0
+/system/bin/displayengineserver@1.0    u:object_r:displayengineserver_exec:s0
+/system/bin/displayengineserver@1.1    u:object_r:displayengineserver_exec:s0
 
 # DMD
 /dev/dsm                   u:object_r:dmd_device:s0

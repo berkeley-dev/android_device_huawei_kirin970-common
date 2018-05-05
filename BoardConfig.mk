@@ -69,5 +69,6 @@ BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /system/lib64/libdisplayengineservice.so|libshims_hwsmartdisplay_jni.so \
+    /system/lib64/libdisplayenginesvc_1_0.so|libshims_hwsmartdisplay_jni.so \
+    /system/lib64/libdisplayenginesvc_1_1.so|libshims_hwsmartdisplay_jni.so \
     /system/lib64/libhwsmartdisplay_jni.so|libshims_hwsmartdisplay_jni.so

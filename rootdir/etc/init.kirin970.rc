@@ -15,3 +15,21 @@ service hisupl_service /vendor/bin/hw/vendor.huawei.hardware.hisupl@1.0-service
     user system
     group system
     setenv LD_PRELOAD libshims_hisupl.so
+
+service dpeservice-1.0 /system/bin/displayengineserver@1.0
+    class main
+    user graphics
+    group graphics system sdcard_rw
+    disabled
+
+service dpeservice-1.1 /system/bin/displayengineserver@1.1
+    class main
+    user graphics
+    group graphics system sdcard_rw
+    disabled
+
+on property:init.svc.displayengine-hal-1-0=*
+    start dpeservice-1.0
+
+on property:init.svc.displayengine-hal-1-1=*
+    start dpeservice-1.1
