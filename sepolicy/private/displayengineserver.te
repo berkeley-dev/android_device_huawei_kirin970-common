@@ -1,5 +1,6 @@
-type displayengineserver, coredomain, domain;
 type displayengineserver_exec, exec_type, file_type;
+
+typeattribute displayengineserver coredomain;
 typeattribute displayengineserver halclientdomain;
 
 # Allow for transition from init domain to displayengineserver
