@@ -88,6 +88,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.version.sdk=$(PLATFORM_SDK_VERSION) \
     ro.cust.cdrom=/dev/null
 
+# Radio
+PRODUCT_PACKAGES += \
+    qti-telephony-common
+
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
     textclassifier.smartselection.bundle1
