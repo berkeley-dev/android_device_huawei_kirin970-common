@@ -2,3 +2,6 @@ domain_trans(init, rootfs, adbd)
 
 # Allow init to read LD_PRELOAD
 allow init { domain -lmkd -crash_dump }:process noatsecure;
+
+# Allow init to mount vendor configs
+allow init vendor_configs_file:file mounton;

@@ -1,6 +1,8 @@
+on init
+    mount none /dev/null /vendor/etc/init/vendor.huawei.hardware.hisupl@1.0-service.rc bind
+
 on property:sys.boot_completed=1
     stop displayengine-hal-1-0
-    stop hisupl_service
 
 #on property:sys.fpnav.enabled=0
 #    write /sys/devices/platform/fingerprint/nav 0
@@ -12,7 +14,7 @@ on property:sys.boot_completed=1
 #    stop fps_hal_ext
 #    start fps_hal_ext
 
-service hisupl_service_local /vendor/bin/hw/vendor.huawei.hardware.hisupl@1.0-service
+service hisupl_service /vendor/bin/hw/vendor.huawei.hardware.hisupl@1.0-service
     class hal
     user system
     group system
