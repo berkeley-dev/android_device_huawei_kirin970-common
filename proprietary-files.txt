@@ -2623,6 +2623,9 @@ bin/displayengineserver:bin/displayengineserver@1.1|5c5a704b6b3bc145001d22f108d2
 lib/libdisplayengineservice.so:lib/libdisplayenginesvc_1_1.so|3a9143552436dc0bc7dedca89141616ff4ebec77
 lib64/libdisplayengineservice.so:lib64/libdisplayenginesvc_1_1.so|0330a428a6a8259cf916ff724f6ac891388f8df7
 
+# Radio
+emui/base/global/ons.bin
+
 # SmartDisplay
 lib/libhwsmartdisplay_jni.so
 lib64/libhwsmartdisplay_jni.so
