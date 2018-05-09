@@ -92,6 +92,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     qti-telephony-common
 
+PRODUCT_BOOT_JARS += \
+    telephony-ext
+
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
     textclassifier.smartselection.bundle1
