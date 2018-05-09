@@ -25,9 +25,8 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
 
 <carrier_config_list>
-
     <carrier_config>
-	<boolean name="world_phone_bool" value="true" />
+	    <boolean name="world_phone_bool" value="true" />
+        <boolean name="hide_signal_strength_in_sim_status_bool" value="true" />
     </carrier_config>
-
 </carrier_config_list>
