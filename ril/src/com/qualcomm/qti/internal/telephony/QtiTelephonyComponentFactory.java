@@ -21,9 +21,11 @@ import android.telephony.Rlog;
 
 import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.TelephonyComponentFactory;
 
 import com.qualcomm.qti.internal.telephony.HwExtTelephony;
+import com.qualcomm.qti.internal.telephony.HwRIL;
 
 public class QtiTelephonyComponentFactory extends TelephonyComponentFactory {
 
@@ -37,4 +39,12 @@ public class QtiTelephonyComponentFactory extends TelephonyComponentFactory {
             Rlog.e(LOG_TAG, "Error creating HwExtTelephony", e);
         }
     }
+
+    @Override
+    public RIL makeRIL(Context context, int preferredNetworkType,
+            int cdmaSubscription, Integer instanceId) {
+        Rlog.d(LOG_TAG, "makeHwRIL");
+        return new HwRIL(context, preferredNetworkType, cdmaSubscription, instanceId);
+    }
+
 }
