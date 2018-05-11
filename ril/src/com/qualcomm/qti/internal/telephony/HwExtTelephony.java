@@ -81,6 +81,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
     private static SubscriptionManager sSubscriptionManager;
     private static TelecomManager sTelecomManager;
     private static TelephonyManager sTelephonyManager;
+    private static boolean sBusy;
     private static int sUiccStatus[];
 
     private Handler mHandler;
@@ -95,6 +96,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
                 Context.TELEPHONY_SUBSCRIPTION_SERVICE);
         sTelecomManager = TelecomManager.from(context);
         sTelephonyManager = TelephonyManager.from(context);
+        sBusy = false;
 
         // Assume everything present is provisioned by default
         sUiccStatus = new int[sPhones.length];
@@ -141,7 +143,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
         mUiccController.registerForIccChanged(mHandler, EVENT_ICC_CHANGED, null);
     }
 
-    private void iccStatusChanged(int slotId) {
+    private synchronized void iccStatusChanged(int slotId) {
         if (slotId >= sPhones.length || sPhones[slotId] == null) {
             return;
         }
@@ -205,6 +207,10 @@ public class HwExtTelephony extends IExtTelephony.Stub {
             return INVALID_INPUT;
         }
 
+        if (sBusy) {
+            return BUSY;
+        }
+
         if (sUiccStatus[slotId] == PROVISIONED) {
             return SUCCESS;
         }
@@ -213,11 +219,16 @@ public class HwExtTelephony extends IExtTelephony.Stub {
             return INVALID_INPUT;
         }
 
+        sBusy = true;
+
+        sUiccStatus[slotId] = PROVISIONED;
+
         setUiccActivation(slotId, true);
         sPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_ACTIVATED);
         sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_ACTIVATED);
 
-        sUiccStatus[slotId] = PROVISIONED;
+        sBusy = false;
+
         broadcastUiccActivation(slotId);
 
         return SUCCESS;
@@ -230,6 +241,10 @@ public class HwExtTelephony extends IExtTelephony.Stub {
             return INVALID_INPUT;
         }
 
+        if (sBusy) {
+            return BUSY;
+        }
+
         if (sUiccStatus[slotId] == NOT_PROVISIONED) {
             return SUCCESS;
         }
@@ -238,14 +253,15 @@ public class HwExtTelephony extends IExtTelephony.Stub {
             return INVALID_INPUT;
         }
 
+        sBusy = true;
+
         int subIdToDeactivate = sPhones[slotId].getSubId();
         int subIdToMakeDefault = INVALID_SUBSCRIPTION_ID;
 
+        sUiccStatus[slotId] = NOT_PROVISIONED;
+
         // Find first provisioned sub that isn't what we're deactivating
         for (int i = 0; i < sPhones.length; i++) {
-            if (i == slotId) {
-                continue;
-            }
             if (sUiccStatus[i] == PROVISIONED) {
                 subIdToMakeDefault = sPhones[i].getSubId();
                 break;
@@ -273,7 +289,8 @@ public class HwExtTelephony extends IExtTelephony.Stub {
         sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
         setUiccActivation(slotId, false);
 
-        sUiccStatus[slotId] = NOT_PROVISIONED;
+        sBusy = false;
+
         broadcastUiccActivation(slotId);
 
         return SUCCESS;
