@@ -185,4 +185,8 @@ public class DisplayEngineService {
     public int enablePowerMode(boolean enable) {
         return -1;
     }
+
+    public int setBootComplete(boolean enable) {
+        return -1;
+    }
 }

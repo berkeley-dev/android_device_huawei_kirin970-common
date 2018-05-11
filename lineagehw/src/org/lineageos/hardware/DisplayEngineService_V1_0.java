@@ -136,4 +136,9 @@ public class DisplayEngineService_V1_0 extends DisplayEngineService {
     public int enablePowerMode(boolean enable) {
         return setScene(DE_SCENE_POWERMODE, enable ? DE_ACTION_MODE_ON : DE_ACTION_MODE_OFF);
     }
+
+    @Override
+    public int setBootComplete(boolean enable) {
+        return setScene(DE_SCENE_BOOT_CMPL, enable ? DE_ACTION_MODE_ON : DE_ACTION_MODE_OFF);
+    }
 }

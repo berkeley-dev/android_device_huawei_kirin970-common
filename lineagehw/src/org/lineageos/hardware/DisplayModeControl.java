@@ -58,6 +58,7 @@ public class DisplayModeControl {
             }
             sColorEnhancementCurrentMode = 0;
 
+            sDisplayEngineService.setBootComplete(true);
             sDisplayEngineService.enablePowerMode(true);
 
             if (FileUtils.isFileReadable(DEFAULT_PATH)) {
