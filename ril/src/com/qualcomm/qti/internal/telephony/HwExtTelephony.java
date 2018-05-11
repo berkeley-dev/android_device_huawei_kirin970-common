@@ -82,6 +82,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
     private static TelecomManager sTelecomManager;
     private static TelephonyManager sTelephonyManager;
     private static boolean sBusy;
+    private static int sSimsToBeReactivated;
     private static int sUiccStatus[];
 
     private Handler mHandler;
@@ -97,6 +98,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
         sTelecomManager = TelecomManager.from(context);
         sTelephonyManager = TelephonyManager.from(context);
         sBusy = false;
+        sSimsToBeReactivated = 0;
 
         // Assume everything present is provisioned by default
         sUiccStatus = new int[sPhones.length];
@@ -150,18 +152,36 @@ public class HwExtTelephony extends IExtTelephony.Stub {
 
         UiccCard card = sPhones[slotId].getUiccCard();
 
-        if (card == null) {
-            sUiccStatus[slotId] = CARD_NOT_PRESENT;
-        } else {
-            if (card.getCardState() != CARDSTATE_PRESENT) {
-                sUiccStatus[slotId] = CARD_NOT_PRESENT;
-            } else if (sUiccStatus[slotId] == CARD_NOT_PRESENT) {
-                sUiccStatus[slotId] = NOT_PROVISIONED;
-                activateUiccCard(slotId);
+        if (sBusy) {
+            // The data subscription is being changed, so the radio stack is restarted
+            if (card != null && card.getCardState() == CARDSTATE_PRESENT) {
+                // Bring down SIM cards that are supposed to be deactivated
+                // We can't call the helper method because it'll block as BUSY
+                if (sUiccStatus[slotId] == NOT_PROVISIONED) {
+                    sPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
+                    sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
+                    setUiccActivation(slotId, false);
+                }
+                // We're done restarting the radio stack, stop blocking
+                if (--sSimsToBeReactivated == 0) {
+                    sBusy = false;
+                }
             }
-        }
+        } else {
+            // Hotswap case
+            if (card == null) {
+                sUiccStatus[slotId] = CARD_NOT_PRESENT;
+            } else {
+                if (card.getCardState() != CARDSTATE_PRESENT) {
+                    sUiccStatus[slotId] = CARD_NOT_PRESENT;
+                } else if (sUiccStatus[slotId] == CARD_NOT_PRESENT) {
+                    sUiccStatus[slotId] = NOT_PROVISIONED;
+                    activateUiccCard(slotId);
+                }
+            }
 
-        broadcastUiccActivation(slotId);
+            broadcastUiccActivation(slotId);
+        }
     }
 
     private void setUiccActivation(int slotId, boolean activate) {
@@ -276,20 +296,27 @@ public class HwExtTelephony extends IExtTelephony.Stub {
             sSubscriptionManager.setDefaultSmsSubId(subIdToMakeDefault);
         }
 
-        if (sSubscriptionManager.getDefaultDataSubscriptionId() == subIdToDeactivate) {
-            sSubscriptionManager.setDefaultDataSubId(subIdToMakeDefault);
-        }
-
         if (sTelephonyManager.getSubIdForPhoneAccount(account) == subIdToDeactivate) {
             sTelecomManager.setUserSelectedOutgoingPhoneAccount(
                     subscriptionIdToPhoneAccountHandle(subIdToMakeDefault));
         }
 
-        sPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
-        sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
-        setUiccActivation(slotId, false);
-
-        sBusy = false;
+        if (sSubscriptionManager.getDefaultDataSubscriptionId() == subIdToDeactivate) {
+            // This requireds restarting the radio stack, so wait until that's done
+            // iccStatusChanged will bring down the SIM appropriately
+            for (int i = 0; i < sUiccStatus.length; i++) {
+                if (sUiccStatus[i] == PROVISIONED || sUiccStatus[i] == NOT_PROVISIONED) {
+                    sSimsToBeReactivated++;
+                }
+            }
+            sSubscriptionManager.setDefaultDataSubId(subIdToMakeDefault);
+            while (sBusy);
+        } else {
+            sPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
+            sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
+            setUiccActivation(slotId, false);
+            sBusy = false;
+        }
 
         broadcastUiccActivation(slotId);
 
