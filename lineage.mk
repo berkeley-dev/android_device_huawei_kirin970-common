@@ -13,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(call inherit-product, $(LOCAL_PATH)/pre-base.mk)
-$(call inherit-product-if-exists, vendor/google/gapps.mk)
 $(call inherit-product, $(LOCAL_PATH)/full_leland.mk)
 
 # Inherit some common Lineage stuff.
