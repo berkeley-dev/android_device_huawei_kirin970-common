@@ -16,7 +16,7 @@
 
 include build/make/target/board/generic_arm64_a/BoardConfig.mk
 
-DEVICE_PATH := device/huawei/berkeley
+VENDOR_PATH := device/huawei/kirin970-common
 
 # Platform
 TARGET_ARCH := arm64
@@ -36,11 +36,8 @@ BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_NO_KERNEL := false
 TARGET_PREBUILT_KERNEL := /dev/null
 
-# Assert
-TARGET_OTA_ASSERT_DEVICE := berkeley,kirin970
-
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
 # Extended Filesystem Support
@@ -48,24 +45,24 @@ TARGET_EXFAT_DRIVER := exfat
 
 # Lineage hardware
 BOARD_HARDWARE_CLASS += \
-    $(DEVICE_PATH)/lineagehw
+    $(VENDOR_PATH)/lineagehw
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3707764736
 
 # Properties
-TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+TARGET_SYSTEM_PROP := $(VENDOR_PATH)/system.prop
 
 # Recovery
 BOARD_PROVIDES_BOOTLOADER_MESSAGE := true
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.kirin970
+TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.kirin970
 
 # Release tools
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)/releasetools
 
 # SELinux
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/private
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/public
 
 # Shims
 TARGET_LD_SHIM_LIBS := \

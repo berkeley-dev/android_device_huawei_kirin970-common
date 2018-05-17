@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product-if-exists, vendor/huawei/berkeley/berkeley-vendor.mk)
+$(call inherit-product-if-exists, vendor/huawei/kirin970-common/kirin970-common-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
