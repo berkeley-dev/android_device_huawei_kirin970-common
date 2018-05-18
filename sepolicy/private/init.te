@@ -10,6 +10,9 @@ allow init userdata_block_device:lnk_file relabelto;
 # Allow init to mount adbd binary
 allow init rootfs:file mounton;
 
+# Allow init to mount mixer paths
+allow init system_file:file mounton;
+
 # Allow init to mount fingerprint keylayout
 allow init vendor_file:file mounton;
 
