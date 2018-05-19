@@ -4,15 +4,30 @@
 #include <cutils/properties.h>
 #include <string.h>
 
+#include "osi/include/osi.h"
+
+typedef struct {
+    const char *product_device;
+    const char *product_model;
+} device_t;
+
+static const device_t devices[] = {
+    {"HWBKL", "Honor View 10"},
+    {"HWCLT", "P20 Pro"},
+};
+
 static inline const char *BtmGetDefaultName()
 {
     char product_device[PROPERTY_VALUE_MAX];
     property_get("ro.product.device", product_device, "");
 
-    if (strcmp(product_device, "HWBKL") == 0)
-        return "Honor View 10";
-    if (strcmp(product_device, "HWCLT") == 0)
-        return "P20 Pro";
+    for (unsigned int i = 0; i < ARRAY_SIZE(devices); i++) {
+        device_t device = devices[i];
+
+        if (strcmp(device.product_device, product_device) == 0) {
+            return device.product_model;
+        }
+    }
 
     // Fallback to ro.product.model
     return "";
