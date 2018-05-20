@@ -41,6 +41,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/compatibility_matrix.xml:system/compatibility_matrix.xml
 
+# FM
+PRODUCT_PACKAGES += \
+    FMRadio
+
 # KeyHandler
 #PRODUCT_PACKAGES += \
 #    org.lineageos.keyhandler
