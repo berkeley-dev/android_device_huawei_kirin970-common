@@ -103,6 +103,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     resize2fs_static
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
     textclassifier.smartselection.bundle1
