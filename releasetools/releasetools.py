@@ -16,6 +16,7 @@ def FullOTA_InstallEnd(info):
     info.script.AppendExtra('mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system");');
     info.script.AppendExtra('run_program("/sbin/sed", "-i", "/genfscon exfat/d", "/system/etc/selinux/plat_sepolicy.cil");');
     info.script.AppendExtra('run_program("/sbin/sed", "-i", "/genfscon fuseblk/d", "/system/etc/selinux/plat_sepolicy.cil");');
+    info.script.AppendExtra('run_program("/sbin/sed", "-i", "/s/socket logdw dgram+passcred 0222 logd logd/socket logdw dgram 0222 logd logd/g", "/system/etc/init/logd.rc");');
     info.script.AppendExtra('unmount("/system");');
 
 def FullOTA_PostValidate(info):
