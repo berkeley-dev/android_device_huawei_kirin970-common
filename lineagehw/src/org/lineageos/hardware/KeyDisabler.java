@@ -16,14 +16,17 @@
 
 package org.lineageos.hardware;
 
+import org.lineageos.internal.util.FileUtils;
+
 import vendor.huawei.hardware.biometrics.fingerprint.V2_1.ExtBiometricsFingerprint;
 
 /*
  * Disable fingerprint gestures
  */
 public class KeyDisabler {
+    private static final String NAV_PATH = "/sys/devices/platform/fingerprint/nav";
+
     private static ExtBiometricsFingerprint sExtBiometricsFingerprint;
-    private static boolean sFingerprintNavEnabled;
 
     static {
         try {
@@ -37,14 +40,14 @@ public class KeyDisabler {
      * Always return true in our case
      */
     public static boolean isSupported() {
-        return sExtBiometricsFingerprint != null;
+        return sExtBiometricsFingerprint != null && FileUtils.isFileReadable(NAV_PATH);
     }
 
     /*
      * Are the fingerprint gestures currently disabled?
      */
     public static boolean isActive() {
-        return sFingerprintNavEnabled;
+        return FileUtils.readOneLine(NAV_PATH).equals("1");
     }
 
     /*
@@ -54,8 +57,7 @@ public class KeyDisabler {
         if (sExtBiometricsFingerprint == null) {
             return false;
         }
-        sFingerprintNavEnabled = state;
-        sExtBiometricsFingerprint.sendCmdToHal(sFingerprintNavEnabled
+        sExtBiometricsFingerprint.sendCmdToHal(state
                 ? ExtBiometricsFingerprint.MMI_TYPE_NAV_DISABLE
                 : ExtBiometricsFingerprint.MMI_TYPE_NAV_ENABLE);
         return true;
