@@ -3,9 +3,6 @@ audio.deep_buffer.media=true
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
 
-# GSI always generate dex pre-opt in system image
-ro.cp_system_other_odex=0
-
 # Enable ADB authentication
 ro.adb.secure=1
 
