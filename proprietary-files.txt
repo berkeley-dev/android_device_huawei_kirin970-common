@@ -1930,6 +1930,10 @@ lib64/vendor.huawei.hardware.graphics.displayeffect@1.2.so
 lib64/vendor.huawei.hardware.hwdisplay.displayengine@1.0.so
 lib64/vendor.huawei.hardware.hwdisplay.displayengine@1.1.so
 
+# HotwordEnrollment
+-priv-app/HotwordEnrollmentOKGoogleHI6403/HotwordEnrollmentOKGoogleHI6403.apk;PRESIGNED|8faf6d751b0f258678cb6ad9b5dff332483fbf82
+-priv-app/HotwordEnrollmentXGoogleHI6403/HotwordEnrollmentXGoogleHI6403.apk;PRESIGNED|7e8376ad34941bd68194540d1977e36b1e1b6d74
+
 # Radio
 emui/base/global/ons.bin
 
