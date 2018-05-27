@@ -17,6 +17,7 @@
 
 if [ "$(cat /proc/device-tree/hisi,product_name)" = "LLD-L31" ]; then
     # Keep NFC
+    echo 0
 else
     # Remove NFC
     rm -rf /system/app/NfcNci
