@@ -103,6 +103,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     resize2fs_static
 
+# Release tools
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/releasetools/releasetools.leland.sh:install/bin/releasetools.leland.sh
+
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
     RemovePackages
