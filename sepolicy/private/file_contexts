@@ -1,2 +1,12 @@
+# Audio
+/system/etc/usb_audio_policy_configuration.xml    u:object_r:vendor_configs_file:s0
+
+# Block Devices
+/dev/block/bootdevice/by-name/modem_om          u:object_r:make_ext4fs_blkdev:s0
+
+# Display engine
+/system/bin/displayengineserver@1.0    u:object_r:displayengineserver_exec:s0
+/system/bin/displayengineserver@1.1    u:object_r:displayengineserver_exec:s0
+
 # VNDK
 /system/bin/vndk-detect    u:object_r:vndk_detect_exec:s0
