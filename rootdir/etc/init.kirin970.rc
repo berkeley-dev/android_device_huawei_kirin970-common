@@ -1,6 +1,5 @@
 on init
     mount none /system/bin/adbd /sbin/adbd bind
-    mount none /dev/null /vendor/etc/init/vendor.huawei.hardware.hisupl@1.0-service.rc bind
     mount none /system/etc/media_codecs.xml /vendor/etc/media_codecs.xml bind
     mount none /system/etc/usb_audio_policy_configuration.xml /vendor/etc/usb_audio_policy_configuration.xml bind
     mount none /system/usr/keylayout/fingerprint.kl /vendor/usr/keylayout/fingerprint.kl bind
@@ -11,12 +10,6 @@ on property:sys.boot_completed=1
 
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
-
-service hisupl_service /vendor/bin/hw/vendor.huawei.hardware.hisupl@1.0-service
-    class hal
-    user system
-    group system
-    setenv LD_PRELOAD libshims_hisupl.so
 
 service dpeservice-1.0 /system/bin/displayengineserver@1.0
     class main

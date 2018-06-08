@@ -1,8 +1,5 @@
 domain_trans(init, rootfs, adbd)
 
-# Allow init to read LD_PRELOAD
-allow init { domain -lmkd -crash_dump }:process noatsecure;
-
 # Allow init to relabel userdata block device
 allow init userdata_block_device:blk_file relabelto;
 allow init userdata_block_device:lnk_file relabelto;
