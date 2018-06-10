@@ -22,7 +22,7 @@ mount -o rw,remount /system
 sed -i "/genfscon exfat/d" /system/etc/selinux/plat_sepolicy.cil
 sed -i "/genfscon fuseblk/d" /system/etc/selinux/plat_sepolicy.cil
 
-# Fix logd service definition and SELinux for 8.0 vendor image
+# 8.0 vendor image specific hacks
 if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.release=8.0.0" ]; then
     # Fix logd service definition
     sed -i "s/socket logdw dgram+passcred 0222 logd logd/socket logdw dgram 0222 logd logd/g" /system/etc/init/logd.rc
@@ -114,6 +114,10 @@ if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.r
 
     # Remove duplicated properties
     sed -i "/huawei.check.root./d" /system/etc/selinux/plat_property_contexts
+
+    # Copy over vendor media_codecs.xml and disable unwanted HW codecs
+    cp /vendor/etc/media_codecs.xml /system/etc/media_codecs.xml
+    sed -i "s/<MediaCodec name=\"OMX.hisi.video.decoder.avc\" type=\"video\/avc\" >/<MediaCodec name=\"OMX.hisi.video.decoder.avc\" type=\"video\/no-avc\" >/g" /system/etc/media_codecs.xml
 fi
 
 exit 0
