@@ -14,6 +14,7 @@
 # limitations under the License.
 
 def FullOTA_InstallEnd(info):
+    info.script.AppendExtra("ifelse(is_mounted(\"/vendor\"), unmount(\"/vendor\"));")
     info.script.AppendExtra('mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system");');
     info.script.AppendExtra('mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/vendor", "/vendor");');
     info.script.AppendExtra('assert(run_program("/sbin/sh", "/tmp/install/bin/releasetools.kirin970.sh") == 0);')
