@@ -18,13 +18,13 @@ package com.qualcomm.qti.internal.telephony;
 
 import android.content.Context;
 import android.hardware.radio.V1_0.RadioResponseInfo;
+import android.os.Message;
 import android.os.Registrant;
 import android.os.SystemProperties;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.RIL;
-import com.android.internal.telephony.RILRequest;
 import com.android.internal.telephony.RadioResponse;
 import com.android.internal.telephony.RadioIndication;
 import com.android.internal.telephony.SubscriptionController;
@@ -109,18 +109,21 @@ public class HwRIL extends RIL {
         return new HwRadioIndication(ril);
     }
 
-    RILRequest processResp(RadioResponseInfo i) {
+    Object processResp(RadioResponseInfo i) {
         return processResponse(i);
     }
 
-    void processRespDone(RILRequest r, RadioResponseInfo i, Object o) {
+    Message getMsgFromRequest(Object r) {
+        return getMessageFromRequest(r);
+    }
+
+    void processRespDone(Object r, RadioResponseInfo i, Object o) {
         processResponseDone(r, i, o);
     }
 
     void processInd(int i) {
         processIndication(i);
     }
-
 
     Registrant getSignalStrengthRegistrant() {
         return mSignalStrengthRegistrant;
