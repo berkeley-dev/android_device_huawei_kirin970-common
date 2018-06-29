@@ -39,8 +39,6 @@ public class HwRadioIndication extends RadioIndication {
     public void currentSignalStrength(int indicationType,
                                       android.hardware.radio.V1_0.SignalStrength signalStrength) {
         if (mHwRil != null) {
-            mHwRil.processInd(indicationType);
-
             SignalStrength ss = HwRIL.convertHalSignalStrength(signalStrength, mHwRil);
             // Note this is set to "verbose" because it happens frequently
             // This is always false, so just comment it out

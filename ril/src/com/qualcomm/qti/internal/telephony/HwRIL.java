@@ -121,10 +121,6 @@ public class HwRIL extends RIL {
         processResponseDone(r, i, o);
     }
 
-    void processInd(int i) {
-        processIndication(i);
-    }
-
     Registrant getSignalStrengthRegistrant() {
         return mSignalStrengthRegistrant;
     }
