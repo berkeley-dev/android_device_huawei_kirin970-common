@@ -45,11 +45,16 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>8</item>
-        <item>55</item>
-        <item>350</item>
-        <item>1600</item>
-        <item>2550</item>
+        <item>1</item>        <!-- pitch black -->
+        <item>5</item>        <!-- dark indoor -->
+        <item>10</item>       <!-- twilight -->
+        <item>50</item>       <!-- dim indoor -->
+        <item>100</item>      <!-- home -->
+        <item>300</item>      <!-- office -->
+        <item>500</item>      <!-- sunrise -->
+        <item>1000</item>     <!-- overcast -->
+        <item>3000</item>     <!-- indirect sun -->
+        <item>10000</item>    <!-- daylight -->
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -58,11 +63,16 @@
          The brightness values must be between 0 and 255 and be non-decreasing.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>6</item>
-        <item>47</item>
-        <item>150</item>
-        <item>180</item>
-        <item>250</item>
+        <item>16</item>
+        <item>20</item>
+        <item>24</item>
+        <item>31</item>
+        <item>48</item>
+        <item>74</item>
+        <item>107</item>
+        <item>152</item>
+        <item>194</item>
+        <item>254</item>
         <item>255</item>
     </integer-array>
 
