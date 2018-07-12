@@ -32,6 +32,7 @@ import android.telephony.TelephonyManager;
 import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.uicc.IccCardApplicationStatus.AppType;
 import com.android.internal.telephony.uicc.IccCardStatus.CardState;
 import com.android.internal.telephony.uicc.UiccCard;
 import com.android.internal.telephony.uicc.UiccController;
@@ -48,6 +49,11 @@ import static android.telephony.TelephonyManager.SIM_ACTIVATION_STATE_ACTIVATED;
 import static android.telephony.TelephonyManager.SIM_ACTIVATION_STATE_DEACTIVATED;
 
 import static android.telephony.TelephonyManager.MultiSimVariants.DSDA;
+
+import static com.android.internal.telephony.uicc.IccCardApplicationStatus.AppType.APPTYPE_CSIM;
+import static com.android.internal.telephony.uicc.IccCardApplicationStatus.AppType.APPTYPE_RUIM;
+import static com.android.internal.telephony.uicc.IccCardApplicationStatus.AppType.APPTYPE_SIM;
+import static com.android.internal.telephony.uicc.IccCardApplicationStatus.AppType.APPTYPE_USIM;
 
 import static com.android.internal.telephony.uicc.IccCardStatus.CardState.CARDSTATE_PRESENT;
 
@@ -186,6 +192,8 @@ public class HwExtTelephony extends IExtTelephony.Stub {
         UiccCard card = sPhones[slotId].getUiccCard();
 
         int numApps = card.getNumApplications();
+        int gsmIndex = -1;
+        int cdmaIndex = -1;
 
         sUiccStatus[slotId].mProvisioned = activate;
 
@@ -194,7 +202,19 @@ public class HwExtTelephony extends IExtTelephony.Stub {
                 continue;
             }
 
-            sCommandsInterfaces[slotId].setUiccSubscription(i, activate, null);
+            AppType appType = card.getApplicationIndex(i).getType();
+            if (gsmIndex < 0 && (appType == APPTYPE_USIM || appType == APPTYPE_SIM)) {
+                gsmIndex = i;
+            } else if (cdmaIndex < 0 && (appType == APPTYPE_CSIM || appType == APPTYPE_RUIM)) {
+                cdmaIndex = i;
+            }
+        }
+
+        if (gsmIndex >= 0) {
+            sCommandsInterfaces[slotId].setUiccSubscription(gsmIndex, activate, null);
+        }
+        if (cdmaIndex >= 0) {
+            sCommandsInterfaces[slotId].setUiccSubscription(cdmaIndex, activate, null);
         }
     }
 
