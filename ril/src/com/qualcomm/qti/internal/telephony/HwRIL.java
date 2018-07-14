@@ -204,27 +204,21 @@ public class HwRIL extends RIL {
                     lteRsrp = (gsmSignalStrength & 0xFF) - 256;
                     if (lteRsrp > -20) { // None or Unknown
                         lteSignalStrength = 64;
-                        lteRsrq = -21;
                         lteRssnr = -200;
                     } else if (lteRsrp >= sSignalCust[0][3]) { // Great
                         lteSignalStrength = 63;
-                        lteRsrq = -3;
                         lteRssnr = 300;
                     } else if (lteRsrp >= sSignalCust[0][2]) { // Good
                         lteSignalStrength = 11;
-                        lteRsrq = -7;
                         lteRssnr = 129;
                     } else if (lteRsrp >= sSignalCust[0][1]) { // Moderate
                         lteSignalStrength = 7;
-                        lteRsrq = -12;
                         lteRssnr = 44;
                     } else if (lteRsrp >= sSignalCust[0][0]) { // Poor
                         lteSignalStrength = 4;
-                        lteRsrq = -17;
                         lteRssnr = 9;
                     } else { // None or Unknown
                         lteSignalStrength = 64;
-                        lteRsrq = -21;
                         lteRssnr = -200;
                     }
             }
