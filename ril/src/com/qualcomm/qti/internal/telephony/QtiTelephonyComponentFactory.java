@@ -20,12 +20,14 @@ import android.content.Context;
 import android.telephony.Rlog;
 
 import com.android.internal.telephony.CommandsInterface;
+import com.android.internal.telephony.HwExtTelephony;
+import com.android.internal.telephony.HwRIL;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.TelephonyComponentFactory;
 
-import com.qualcomm.qti.internal.telephony.HwExtTelephony;
-import com.qualcomm.qti.internal.telephony.HwRIL;
+import com.android.internal.telephony.HwExtTelephony;
+import com.android.internal.telephony.HwRIL;
 
 public class QtiTelephonyComponentFactory extends TelephonyComponentFactory {
 

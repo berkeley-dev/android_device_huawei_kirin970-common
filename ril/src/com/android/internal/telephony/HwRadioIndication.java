@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-package com.qualcomm.qti.internal.telephony;
+package com.android.internal.telephony;
 
 import android.os.AsyncResult;
 import android.telephony.SignalStrength;
 
 import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.RadioIndication;
-
-import com.qualcomm.qti.internal.telephony.HwRIL;
 
 public class HwRadioIndication extends RadioIndication {
 

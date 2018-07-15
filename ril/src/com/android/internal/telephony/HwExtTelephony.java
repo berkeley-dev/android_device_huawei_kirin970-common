@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.qualcomm.qti.internal.telephony;
+package com.android.internal.telephony;
 
 import android.content.Context;
 import android.content.Intent;

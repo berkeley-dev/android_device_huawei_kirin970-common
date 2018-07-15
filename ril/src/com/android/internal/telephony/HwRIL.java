@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.qualcomm.qti.internal.telephony;
+package com.android.internal.telephony;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -29,9 +29,6 @@ import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.RadioResponse;
 import com.android.internal.telephony.RadioIndication;
 import com.android.internal.telephony.SubscriptionController;
-
-import com.qualcomm.qti.internal.telephony.HwRadioResponse;
-import com.qualcomm.qti.internal.telephony.HwRadioIndication;
 
 import static android.telephony.TelephonyManager.NETWORK_TYPE_UNKNOWN;
 import static android.telephony.TelephonyManager.NETWORK_TYPE_GPRS;

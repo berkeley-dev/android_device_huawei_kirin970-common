@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.qualcomm.qti.internal.telephony;
+package com.android.internal.telephony;
 
 import android.hardware.radio.V1_0.RadioError;
 import android.hardware.radio.V1_0.RadioResponseInfo;
@@ -24,8 +24,6 @@ import android.telephony.SignalStrength;
 
 import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.RadioResponse;
-
-import com.qualcomm.qti.internal.telephony.HwRIL;
 
 public class HwRadioResponse extends RadioResponse {
 
