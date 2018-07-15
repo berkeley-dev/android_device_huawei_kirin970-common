@@ -18,9 +18,12 @@ package com.android.internal.telephony;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.hardware.radio.V1_0.IRadio;
 import android.hardware.radio.V1_0.RadioResponseInfo;
+import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Registrant;
+import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
@@ -41,6 +44,8 @@ import static android.telephony.TelephonyManager.NETWORK_TYPE_LTE;
 import static android.telephony.TelephonyManager.NETWORK_TYPE_HSPAP;
 import static android.telephony.TelephonyManager.NETWORK_TYPE_GSM;
 import static android.telephony.TelephonyManager.NETWORK_TYPE_LTE_CA;
+
+import static com.android.internal.telephony.RILConstants.*;
 
 public class HwRIL extends RIL {
 
@@ -259,4 +264,69 @@ public class HwRIL extends RIL {
                 false /* gsmFlag - don't care; will be changed by SST */);
     }
 
+    @Override
+    protected IRadio getRadioProxy(Message result) {
+        int i = 0;
+        if (!mIsMobileNetworkSupported) {
+            if (RILJ_LOGV) riljLog("getRadioProxy: Not calling getService(): wifi-only");
+            if (result != null) {
+                AsyncResult.forMessage(result, null,
+                        CommandException.fromRilErrno(RADIO_NOT_AVAILABLE));
+                result.sendToTarget();
+            }
+            return null;
+        }
+
+	if (mRadioProxy != null) {
+            return mRadioProxy;
+        }
+
+        vendor.huawei.hardware.radio.V1_0.IRadio iRadio = null;
+        try {
+            iRadio = vendor.huawei.hardware.radio.V1_1.IRadio.getService(HIDL_SERVICE_NAME[mPhoneId == null ? 0 : mPhoneId]);
+            mRadioProxy = iRadio;
+        } catch (Exception e) {
+            riljLoge("getRadioProxy: huaweiradioProxy got 1_1 exception = " + e);
+        }
+        try {
+            if (mRadioProxy == null) {
+                try {
+                    String[] strArr = HIDL_SERVICE_NAME;
+                    if (mPhoneId != null) {
+                        i = mPhoneId;
+                    }
+                    iRadio = vendor.huawei.hardware.radio.V1_0.IRadio.getService(strArr[i]);
+                    mRadioProxy = iRadio;
+                } catch (Exception e2) {
+                    riljLoge("getRadioProxy: huaweiradioProxy got 1_0 exception = " + e2);
+                }
+            }
+            if (mRadioProxy != null) {
+                mRadioProxy.linkToDeath(mRadioProxyDeathRecipient, mRadioProxyCookie.incrementAndGet());
+                iRadio.setResponseFunctionsHuawei(mRadioResponse, mRadioIndication);
+                iRadio.setResponseFunctions(mRadioResponse, mRadioIndication);
+            } else {
+                riljLoge("getRadioProxy: huawei radioProxy == null");
+            }
+	} catch (RemoteException | RuntimeException e) {
+            mRadioProxy = null;
+            riljLoge("RadioProxy getService/setResponseFunctions: " + e);
+        }
+
+	if (mRadioProxy == null) {
+            if (result != null) {
+                AsyncResult.forMessage(result, null,
+                        CommandException.fromRilErrno(RADIO_NOT_AVAILABLE));
+                result.sendToTarget();
+            }
+
+            // if service is not up, treat it like death notification to try to get service again
+            mRilHandler.sendMessageDelayed(
+                    mRilHandler.obtainMessage(EVENT_RADIO_PROXY_DEAD,
+                            mRadioProxyCookie.incrementAndGet()),
+                    IRADIO_GET_SERVICE_DELAY_MILLIS);
+        }
+
+        return mRadioProxy;
+    }
 }
