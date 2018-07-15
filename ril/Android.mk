@@ -20,6 +20,7 @@ ifneq ($(TARGET_PROVIDES_QTI_TELEPHONY_JAR),)
 include $(CLEAR_VARS)
 LOCAL_MODULE := qti-telephony-common
 LOCAL_JAVA_LIBRARIES := telephony-common telephony-ext
+LOCAL_REQUIRED_MODULES := telephony-ext
 LOCAL_SRC_FILES := $(call all-java-files-under,src)
 LOCAL_MODULE_TAGS := optional
 LOCAL_DEX_PREOPT := false
