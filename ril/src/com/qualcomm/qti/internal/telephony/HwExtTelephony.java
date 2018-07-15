@@ -88,57 +88,43 @@ public class HwExtTelephony extends IExtTelephony.Stub {
     // From IccCardProxy.java
     private static final int EVENT_ICC_CHANGED = 3;
 
-    private static CommandsInterface[] sCommandsInterfaces;
-    private static Context sContext;
     private static HwExtTelephony sInstance;
-    private static Phone[] sPhones;
-    private static SubscriptionManager sSubscriptionManager;
-    private static TelecomManager sTelecomManager;
-    private static TelephonyManager sTelephonyManager;
-    private static UiccStatus sUiccStatus[];
-    private static boolean sBusy;
 
+    private CommandsInterface[] mCommandsInterfaces;
+    private Context mContext;
     private Handler mHandler;
+    private Phone[] mPhones;
+    private SubscriptionManager mSubscriptionManager;
+    private TelecomManager mTelecomManager;
+    private TelephonyManager mTelephonyManager;
     private UiccController mUiccController;
+    private UiccStatus mUiccStatus[];
+    private boolean mBusy;
 
-    public static void init(Context context, Phone[] phones, CommandsInterface[] commandsInterfaces) {
-        sCommandsInterfaces = commandsInterfaces;
-        sContext = context;
-        sPhones = phones;
-        sSubscriptionManager = (SubscriptionManager) sContext.getSystemService(
-                Context.TELEPHONY_SUBSCRIPTION_SERVICE);
-        sTelecomManager = TelecomManager.from(context);
-        sTelephonyManager = TelephonyManager.from(context);
-        sBusy = false;
 
-        sInstance = getInstance();
+    public static void init(Context context, Phone[] phones,
+            CommandsInterface[] commandsInterfaces) {
+        sInstance = getInstance(context, phones, commandsInterfaces);
     }
 
-    public static HwExtTelephony getInstance() {
+    public static HwExtTelephony getInstance(Context context, Phone[] phones,
+            CommandsInterface[] commandsInterfaces) {
         if (sInstance == null) {
-            sInstance = new HwExtTelephony();
+            sInstance = new HwExtTelephony(context, phones, commandsInterfaces);
         }
 
         return sInstance;
     }
 
-    private HwExtTelephony() {
+    private HwExtTelephony(Context context, Phone[] phones,
+            CommandsInterface[] commandsInterfaces) {
         if (ServiceManager.getService(EXT_TELEPHONY_SERVICE_NAME) == null) {
             ServiceManager.addService(EXT_TELEPHONY_SERVICE_NAME, this);
         }
 
-        // Assume everything present is provisioned by default
-        sUiccStatus = new UiccStatus[sPhones.length];
-        for (int i = 0; i < sPhones.length; i++) {
-            if (sPhones[i] == null) {
-                sUiccStatus[i] = null;
-            } else if (sPhones[i].getUiccCard() == null) {
-                sUiccStatus[i] = new UiccStatus(CARD_NOT_PRESENT);
-            } else {
-                sUiccStatus[i] = new UiccStatus(sPhones[i].getUiccCard().getCardState()
-                        == CARDSTATE_PRESENT ? PROVISIONED : CARD_NOT_PRESENT);
-            }
-        }
+        mCommandsInterfaces = commandsInterfaces;
+
+        mContext = context;
 
         // Keep track of ICC state changes
         mHandler = new Handler() {
@@ -154,27 +140,52 @@ public class HwExtTelephony extends IExtTelephony.Stub {
                 }
             }
         };
+
+        mPhones = phones;
+
+        mSubscriptionManager = (SubscriptionManager) mContext.getSystemService(
+                Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+
+        mTelecomManager = TelecomManager.from(context);
+
+        mTelephonyManager = TelephonyManager.from(context);
+
+        // Assume everything present is provisioned by default
+        mUiccStatus = new UiccStatus[mPhones.length];
+        for (int i = 0; i < mPhones.length; i++) {
+            if (mPhones[i] == null) {
+                mUiccStatus[i] = null;
+            } else if (mPhones[i].getUiccCard() == null) {
+                mUiccStatus[i] = new UiccStatus(CARD_NOT_PRESENT);
+            } else {
+                mUiccStatus[i] = new UiccStatus(mPhones[i].getUiccCard().getCardState()
+                        == CARDSTATE_PRESENT ? PROVISIONED : CARD_NOT_PRESENT);
+            }
+        }
+
+        mBusy = false;
+
         mUiccController = UiccController.getInstance();
         mUiccController.registerForIccChanged(mHandler, EVENT_ICC_CHANGED, null);
     }
 
     private synchronized void iccStatusChanged(int slotId) {
-        if (slotId >= sPhones.length || sPhones[slotId] == null) {
+        if (slotId >= mPhones.length || mPhones[slotId] == null) {
             return;
         }
 
-        UiccCard card = sPhones[slotId].getUiccCard();
+        UiccCard card = mPhones[slotId].getUiccCard();
 
         if (card == null || card.getCardState() != CARDSTATE_PRESENT) {
-            sUiccStatus[slotId].mStatus = CARD_NOT_PRESENT;
+            mUiccStatus[slotId].mStatus = CARD_NOT_PRESENT;
         } else {
-            if (sUiccStatus[slotId].mProvisioned &&
-                    sUiccStatus[slotId].mStatus != PROVISIONED) {
-                sUiccStatus[slotId].mStatus = NOT_PROVISIONED;
+            if (mUiccStatus[slotId].mProvisioned &&
+                    mUiccStatus[slotId].mStatus != PROVISIONED) {
+                mUiccStatus[slotId].mStatus = NOT_PROVISIONED;
                 activateUiccCard(slotId);
-            } else if (!sUiccStatus[slotId].mProvisioned &&
-                    sUiccStatus[slotId].mStatus != NOT_PROVISIONED) {
-                sUiccStatus[slotId].mStatus = PROVISIONED;
+            } else if (!mUiccStatus[slotId].mProvisioned &&
+                    mUiccStatus[slotId].mStatus != NOT_PROVISIONED) {
+                mUiccStatus[slotId].mStatus = PROVISIONED;
                 deactivateUiccCard(slotId);
             }
         }
@@ -183,74 +194,74 @@ public class HwExtTelephony extends IExtTelephony.Stub {
     }
 
     private void setUiccActivation(int slotId, boolean activate) {
-        UiccCard card = sPhones[slotId].getUiccCard();
+        UiccCard card = mPhones[slotId].getUiccCard();
 
         int numApps = card.getNumApplications();
 
-        sUiccStatus[slotId].mProvisioned = activate;
+        mUiccStatus[slotId].mProvisioned = activate;
 
         for (int i = 0; i < numApps; i++) {
             if (card.getApplicationIndex(i) == null) {
                 continue;
             }
 
-            sCommandsInterfaces[slotId].setUiccSubscription(i, activate, null);
+            mCommandsInterfaces[slotId].setUiccSubscription(i, activate, null);
         }
     }
 
     private void broadcastUiccActivation(int slotId) {
         Intent intent = new Intent(ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED);
         intent.putExtra(PhoneConstants.PHONE_KEY, slotId);
-        intent.putExtra(EXTRA_NEW_PROVISION_STATE, sUiccStatus[slotId].mStatus);
-        sContext.sendBroadcast(intent);
+        intent.putExtra(EXTRA_NEW_PROVISION_STATE, mUiccStatus[slotId].mStatus);
+        mContext.sendBroadcast(intent);
     }
 
     @Override
     public int getCurrentUiccCardProvisioningStatus(int slotId) {
-        if (slotId >= sUiccStatus.length || sUiccStatus[slotId] == null) {
+        if (slotId >= mUiccStatus.length || mUiccStatus[slotId] == null) {
             return INVALID_INPUT;
         }
 
-        return sUiccStatus[slotId].mStatus;
+        return mUiccStatus[slotId].mStatus;
     }
 
     @Override
     public int getUiccCardProvisioningUserPreference(int slotId) {
-        if (slotId >= sUiccStatus.length || sUiccStatus[slotId] == null) {
+        if (slotId >= mUiccStatus.length || mUiccStatus[slotId] == null) {
             return INVALID_INPUT;
         }
 
-        return sUiccStatus[slotId].mProvisioned ? PROVISIONED : NOT_PROVISIONED;
+        return mUiccStatus[slotId].mProvisioned ? PROVISIONED : NOT_PROVISIONED;
     }
 
     @Override
     public int activateUiccCard(int slotId) {
-        if (slotId >= sPhones.length || sPhones[slotId] == null ||
-                slotId >= sCommandsInterfaces.length || sCommandsInterfaces[slotId] == null) {
+        if (slotId >= mPhones.length || mPhones[slotId] == null ||
+                slotId >= mCommandsInterfaces.length || mCommandsInterfaces[slotId] == null) {
             return INVALID_INPUT;
         }
 
-        if (sBusy) {
+        if (mBusy) {
             return BUSY;
         }
 
-        if (sUiccStatus[slotId].mStatus == PROVISIONED) {
+        if (mUiccStatus[slotId].mStatus == PROVISIONED) {
             return SUCCESS;
         }
 
-        if (sUiccStatus[slotId].mStatus != NOT_PROVISIONED) {
+        if (mUiccStatus[slotId].mStatus != NOT_PROVISIONED) {
             return INVALID_INPUT;
         }
 
-        sBusy = true;
+        mBusy = true;
 
-        sUiccStatus[slotId].mStatus = PROVISIONED;
+        mUiccStatus[slotId].mStatus = PROVISIONED;
 
         setUiccActivation(slotId, true);
-        sPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_ACTIVATED);
-        sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_ACTIVATED);
+        mPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_ACTIVATED);
+        mPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_ACTIVATED);
 
-        sBusy = false;
+        mBusy = false;
 
         broadcastUiccActivation(slotId);
 
@@ -259,60 +270,60 @@ public class HwExtTelephony extends IExtTelephony.Stub {
 
     @Override
     public int deactivateUiccCard(int slotId) {
-        if (slotId >= sPhones.length || sPhones[slotId] == null ||
-                slotId >= sCommandsInterfaces.length || sCommandsInterfaces[slotId] == null) {
+        if (slotId >= mPhones.length || mPhones[slotId] == null ||
+                slotId >= mCommandsInterfaces.length || mCommandsInterfaces[slotId] == null) {
             return INVALID_INPUT;
         }
 
-        if (sBusy) {
+        if (mBusy) {
             return BUSY;
         }
 
-        if (sUiccStatus[slotId].mStatus == NOT_PROVISIONED) {
+        if (mUiccStatus[slotId].mStatus == NOT_PROVISIONED) {
             return SUCCESS;
         }
 
-        if (sUiccStatus[slotId].mStatus != PROVISIONED) {
+        if (mUiccStatus[slotId].mStatus != PROVISIONED) {
             return INVALID_INPUT;
         }
 
-        sBusy = true;
+        mBusy = true;
 
-        int subIdToDeactivate = sPhones[slotId].getSubId();
+        int subIdToDeactivate = mPhones[slotId].getSubId();
         int subIdToMakeDefault = INVALID_SUBSCRIPTION_ID;
 
-        sUiccStatus[slotId].mStatus = NOT_PROVISIONED;
+        mUiccStatus[slotId].mStatus = NOT_PROVISIONED;
 
         // Find first provisioned sub that isn't what we're deactivating
-        for (int i = 0; i < sPhones.length; i++) {
-            if (sUiccStatus[i].mStatus == PROVISIONED) {
-                subIdToMakeDefault = sPhones[i].getSubId();
+        for (int i = 0; i < mPhones.length; i++) {
+            if (mUiccStatus[i].mStatus == PROVISIONED) {
+                subIdToMakeDefault = mPhones[i].getSubId();
                 break;
             }
         }
 
         // Make sure defaults are now sane
-        PhoneAccountHandle accountHandle = sTelecomManager.getUserSelectedOutgoingPhoneAccount();
-        PhoneAccount account = sTelecomManager.getPhoneAccount(accountHandle);
+        PhoneAccountHandle accountHandle = mTelecomManager.getUserSelectedOutgoingPhoneAccount();
+        PhoneAccount account = mTelecomManager.getPhoneAccount(accountHandle);
 
-        if (sSubscriptionManager.getDefaultSmsSubscriptionId() == subIdToDeactivate) {
-            sSubscriptionManager.setDefaultSmsSubId(subIdToMakeDefault);
+        if (mSubscriptionManager.getDefaultSmsSubscriptionId() == subIdToDeactivate) {
+            mSubscriptionManager.setDefaultSmsSubId(subIdToMakeDefault);
         }
 
-        if (sSubscriptionManager.getDefaultDataSubscriptionId() == subIdToDeactivate) {
-            sSubscriptionManager.setDefaultDataSubId(subIdToMakeDefault);
+        if (mSubscriptionManager.getDefaultDataSubscriptionId() == subIdToDeactivate) {
+            mSubscriptionManager.setDefaultDataSubId(subIdToMakeDefault);
         }
 
-        if (sTelephonyManager.getSubIdForPhoneAccount(account) == subIdToDeactivate) {
-            sTelecomManager.setUserSelectedOutgoingPhoneAccount(
+        if (mTelephonyManager.getSubIdForPhoneAccount(account) == subIdToDeactivate) {
+            mTelecomManager.setUserSelectedOutgoingPhoneAccount(
                     subscriptionIdToPhoneAccountHandle(subIdToMakeDefault));
         }
 
-        sPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
-        sPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
+        mPhones[slotId].setVoiceActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
+        mPhones[slotId].setDataActivationState(SIM_ACTIVATION_STATE_DEACTIVATED);
         setUiccActivation(slotId, false);
 
-        sBusy = false;
+        mBusy = false;
 
         broadcastUiccActivation(slotId);
 
@@ -362,7 +373,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
     @Override
     public boolean isLocalEmergencyNumber(String number) {
         // This is lame...
-        return PhoneNumberUtils.isLocalEmergencyNumber(sContext, number);
+        return PhoneNumberUtils.isLocalEmergencyNumber(mContext, number);
     }
 
     @Override
@@ -374,7 +385,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
     @Override
     public boolean isPotentialLocalEmergencyNumber(String number) {
         // This is lame...
-        return PhoneNumberUtils.isPotentialLocalEmergencyNumber(sContext, number);
+        return PhoneNumberUtils.isPotentialLocalEmergencyNumber(mContext, number);
     }
 
     @Override
@@ -407,7 +418,7 @@ public class HwExtTelephony extends IExtTelephony.Stub {
 
     @Override
     public boolean isDsdaEnabled() {
-        return sTelephonyManager.getMultiSimConfiguration() == DSDA;
+        return mTelephonyManager.getMultiSimConfiguration() == DSDA;
     }
 
     @Override
@@ -454,12 +465,12 @@ public class HwExtTelephony extends IExtTelephony.Stub {
 
     private PhoneAccountHandle subscriptionIdToPhoneAccountHandle(final int subId) {
         final Iterator<PhoneAccountHandle> phoneAccounts =
-                sTelecomManager.getCallCapablePhoneAccounts().listIterator();
+                mTelecomManager.getCallCapablePhoneAccounts().listIterator();
 
         while (phoneAccounts.hasNext()) {
             final PhoneAccountHandle phoneAccountHandle = phoneAccounts.next();
-            final PhoneAccount phoneAccount = sTelecomManager.getPhoneAccount(phoneAccountHandle);
-            if (subId == sTelephonyManager.getSubIdForPhoneAccount(phoneAccount)) {
+            final PhoneAccount phoneAccount = mTelecomManager.getPhoneAccount(phoneAccountHandle);
+            if (subId == mTelephonyManager.getSubIdForPhoneAccount(phoneAccount)) {
                 return phoneAccountHandle;
             }
         }
