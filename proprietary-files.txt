@@ -2637,6 +2637,10 @@ bin/displayengineserver:bin/displayengineserver@1.1|5c5a704b6b3bc145001d22f108d2
 lib/libdisplayengineservice.so:lib/libdisplayenginesvc_1_1.so|3a9143552436dc0bc7dedca89141616ff4ebec77
 lib64/libdisplayengineservice.so:lib64/libdisplayenginesvc_1_1.so|0330a428a6a8259cf916ff724f6ac891388f8df7
 
+# Hotword Enrollment
+-priv-app/HotwordEnrollmentOKGoogleHI6403/HotwordEnrollmentOKGoogleHI6403.apk;PRESIGNED
+-priv-app/HotwordEnrollmentXGoogleHI6403/HotwordEnrollmentXGoogleHI6403.apk;PRESIGNED
+
 # IMS
 -app/HwIms/HwIms.apk
 app/HwIms/lib/arm64/libHME-Video.so
