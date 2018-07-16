@@ -1877,7 +1877,7 @@ public interface IRadio extends vendor.huawei.hardware.radio.V1_0.IRadio {
             }
         }
 
-        public void setResponseFunctionsHuawei(vendor.huawei.hardware.radio.V1_0.IRadioResponse radioResponse, vendor.huawei.hardware.radio.V1_0.IRadioIndication radioIndication) throws RemoteException {
+        public void setResponseFunctionsHuawei(IRadioResponse radioResponse, IRadioIndication radioIndication) throws RemoteException {
             IHwBinder iHwBinder = null;
             HwParcel _hidl_request = new HwParcel();
             _hidl_request.writeInterfaceToken(vendor.huawei.hardware.radio.V1_0.IRadio.kInterfaceName);
@@ -4237,7 +4237,7 @@ public interface IRadio extends vendor.huawei.hardware.radio.V1_0.IRadio {
                     return;
                 case 131:
                     _hidl_request.enforceInterface(vendor.huawei.hardware.radio.V1_0.IRadio.kInterfaceName);
-                    setResponseFunctionsHuawei(vendor.huawei.hardware.radio.V1_0.IRadioResponse.asInterface(_hidl_request.readStrongBinder()), vendor.huawei.hardware.radio.V1_0.IRadioIndication.asInterface(_hidl_request.readStrongBinder()));
+                    setResponseFunctionsHuawei(IRadioResponse.asInterface(_hidl_request.readStrongBinder()), IRadioIndication.asInterface(_hidl_request.readStrongBinder()));
                     _hidl_reply.writeStatus(0);
                     _hidl_reply.send();
                     return;
