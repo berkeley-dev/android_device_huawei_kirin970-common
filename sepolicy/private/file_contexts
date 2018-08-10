@@ -65,6 +65,3 @@
 
 # Splash2
 /splash2(/.*)?                                  u:object_r:splash2_data_file:s0
-
-# VNDK
-/system/bin/vndk-detect    u:object_r:vndk_detect_exec:s0

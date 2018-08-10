@@ -1,7 +1,0 @@
-#!/system/bin/sh
-
-if [ "$(grep ro.build.version.release /vendor/build.prop)" = "ro.build.version.release=8.0.0" ]; then
-    setprop sys.vndk.ldconfig "/system/etc/ld.config.compat.txt"
-else
-    setprop sys.vndk.ldconfig "/system/etc/ld.config.txt"
-fi

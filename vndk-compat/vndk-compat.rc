@@ -1,3 +1,0 @@
-on post-fs
-    exec - root -- /system/bin/vndk-detect
-    export LD_CONFIG_FILE ${sys.vndk.ldconfig}

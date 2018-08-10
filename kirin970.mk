@@ -63,7 +63,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
     ro.build.version.codename=$(PLATFORM_VERSION_CODENAME) \
-    ro.build.version.huawei=8.0.0 \
     ro.build.version.release=$(PLATFORM_VERSION) \
     ro.build.version.sdk=$(PLATFORM_SDK_VERSION) \
     ro.cust.cdrom=/dev/null
@@ -91,9 +90,3 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshims_hisupl \
     libshims_hwsmartdisplay_jni
-
-# VNDK
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/vndk-compat/vndk-detect:system/bin/vndk-detect \
-    $(LOCAL_PATH)/vndk-compat/ld.config.compat.txt:system/etc/ld.config.compat.txt \
-    $(LOCAL_PATH)/vndk-compat/vndk-compat.rc:system/etc/init/vndk-compat.rc
