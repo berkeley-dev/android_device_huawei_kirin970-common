@@ -44,8 +44,8 @@ BOARD_HAVE_BLUETOOTH := true
 TARGET_EXFAT_DRIVER := exfat
 
 # Lineage hardware
-BOARD_HARDWARE_CLASS += \
-    $(VENDOR_PATH)/lineagehw
+JAVA_SOURCE_OVERLAYS := \
+    org.lineageos.hardware|$(VENDOR_PATH)/lineagehw|**/*.java
 
 # Partitions
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
