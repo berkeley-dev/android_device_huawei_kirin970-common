@@ -11,6 +11,7 @@ on fs
     mount none /odm/hw_odm/${ro.boot.product.hardware.sku} /hw_odm bind
     mount none /product/lost+found /product/app bind
     mount none /vendor/lost+found /vendor/etc/audio bind
+    mount none /system/etc/audio_policy_configuration.xml /vendor/etc/audio_policy_configuration.xml bind
 
 on post-fs
     exec - root -- /system/bin/odm-init

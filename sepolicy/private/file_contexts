@@ -42,3 +42,6 @@
 /system/bin/bfm-ctl                u:object_r:bfm-ctl_exec:s0
 /system/bin/displayengineserver    u:object_r:displayengineserver_exec:s0
 /system/bin/odm-init               u:object_r:odm-init_exec:s0
+
+# Configs
+/system/etc/audio_policy_configuration.xml    u:object_r:vendor_configs_file:s0
