@@ -10,4 +10,4 @@ ro.adb.secure=1
 ro.vendor.qti.sys.fw.bg_apps_limit=60
 
 # RIL
-ro.telephony.needsMuteByRil=true
+ro.telephony.isHisiRIL=true
