@@ -17,6 +17,9 @@
 package com.qualcomm.qti.internal.telephony;
 
 import android.content.Context;
+import android.os.AsyncResult;
+import android.os.Message;
+import android.telephony.Rlog;
 
 import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.GsmCdmaPhone;
@@ -36,6 +39,34 @@ public class HwGsmCdmaPhone extends GsmCdmaPhone {
             TelephonyComponentFactory telephonyComponentFactory) {
         super(context, ci, notifier, unitTestMode, phoneId, precisePhoneType,
                 telephonyComponentFactory);
+    }
+
+    @Override
+    public void handleMessage(Message msg) {
+        AsyncResult ar;
+
+        switch (msg.what) {
+            case EVENT_USSD:
+                ar = (AsyncResult) msg.obj;
+
+                String[] ussdResult = (String[]) ar.result;
+
+                if (ussdResult.length > 0) {
+                    try {
+                        int ussdMode = Integer.parseInt(ussdResult[0]);
+                        if (ussdMode == CommandsInterface.USSD_MODE_NW_RELEASE) {
+                            ussdMode = CommandsInterface.USSD_MODE_REQUEST;
+                        }
+                        ussdResult[0] = String.valueOf(ussdMode);
+                        ar.result = ussdResult;
+                    } catch (NumberFormatException e) {
+                        Rlog.w(LOG_TAG, "error parsing USSD");
+                    }
+                }
+                break;
+        }
+
+        super.handleMessage(msg);
     }
 
 }
