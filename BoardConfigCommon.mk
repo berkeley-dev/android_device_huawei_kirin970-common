@@ -58,7 +58,6 @@ TARGET_SYSTEM_PROP := $(VENDOR_PATH)/system.prop
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # Recovery
-BOARD_PROVIDES_BOOTLOADER_MESSAGE := true
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.kirin970
 
 # Release tools

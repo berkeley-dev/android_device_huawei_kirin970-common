@@ -1,4 +1,0 @@
-# set up the global environment
-on init
-    export BOOTCLASSPATH %BOOTCLASSPATH%
-    export SYSTEMSERVERCLASSPATH %SYSTEMSERVERCLASSPATH%

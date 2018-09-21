@@ -21,23 +21,13 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
-# Audio
-PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml
-
 # Device init scripts
 PRODUCT_PACKAGES += \
-    init.kirin970.rc \
-    init.kirin970.ab.rc \
-    init.kirin970.environ.rc
+    init.kirin970.rc
 
 # Display
 PRODUCT_PACKAGES += \
     libion
-
-# HIDL
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/compatibility_matrix.xml:system/compatibility_matrix.xml
 
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
@@ -77,10 +67,6 @@ PRODUCT_BOOT_JARS += \
 # Recovery
 PRODUCT_PACKAGES += \
     resize2fs_static
-
-# Release tools
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/releasetools/releasetools.kirin970.sh:install/bin/releasetools.kirin970.sh
 
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
