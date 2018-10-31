@@ -40,6 +40,9 @@ TARGET_PREBUILT_KERNEL := /dev/null
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
+# Board
+TARGET_BOARD_INFO_FILE := $(VENDOR_PATH)/board-info.txt
+
 # Lineage hardware
 JAVA_SOURCE_OVERLAYS := \
     org.lineageos.hardware|$(VENDOR_PATH)/lineagehw|**/*.java
@@ -62,6 +65,7 @@ TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.kirin970
 
 # Release tools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_huawei
 TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)/releasetools
 
 # SELinux
