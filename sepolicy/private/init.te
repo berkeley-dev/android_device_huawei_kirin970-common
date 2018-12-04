@@ -2,6 +2,9 @@
 allow init userdata_block_device:blk_file relabelto;
 allow init userdata_block_device:lnk_file relabelto;
 
+# Allow init to mount /dev/block/bootdevice/by-name
+allow init block_device:dir mounton;
+
 # Allow init to mount fingerprint keylayout
 allow init vendor_file:file mounton;
 
