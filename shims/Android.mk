@@ -17,16 +17,6 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := hisupl.c
-
-LOCAL_MODULE := libshims_hisupl
-LOCAL_MODULE_TAGS := optional
-LOCAL_SHARED_LIBRARIES := libhardware liblog
-
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-
 LOCAL_SRC_FILES := hwsmartdisplay_jni.c
 
 LOCAL_MODULE := libshims_hwsmartdisplay_jni

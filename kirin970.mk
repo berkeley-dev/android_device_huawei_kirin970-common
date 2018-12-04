@@ -66,5 +66,4 @@ PRODUCT_PACKAGES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshims_hisupl \
     libshims_hwsmartdisplay_jni
