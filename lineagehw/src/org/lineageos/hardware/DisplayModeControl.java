@@ -16,9 +16,7 @@
 
 package org.lineageos.hardware;
 
-import android.os.SystemProperties;
 import com.android.server.display.DisplayEngineService;
-import com.android.server.display.DisplayEngineService_V1_0;
 import com.android.server.display.DisplayEngineService_V1_1;
 
 import lineageos.hardware.DisplayMode;
@@ -43,19 +41,12 @@ public class DisplayModeControl {
         new DisplayMode(1, "Vivid"),
     };
 
-    private static final String DISPLAY_ENGINE_V1_0_PROP = "init.svc.displayengine-hal-1-0";
-    private static final String DISPLAY_ENGINE_V1_1_PROP = "init.svc.displayengine-hal-1-1";
-
     private static DisplayEngineService sDisplayEngineService;
     private static int sColorEnhancementCurrentMode;
 
     static {
         try {
-            if (SystemProperties.get(DISPLAY_ENGINE_V1_0_PROP, "") != "") {
-                sDisplayEngineService = new DisplayEngineService_V1_0();
-            } else if (SystemProperties.get(DISPLAY_ENGINE_V1_1_PROP, "") != "") {
-                sDisplayEngineService = new DisplayEngineService_V1_1();
-            }
+            sDisplayEngineService = new DisplayEngineService_V1_1();
             sColorEnhancementCurrentMode = 0;
 
             sDisplayEngineService.setBootComplete(true);

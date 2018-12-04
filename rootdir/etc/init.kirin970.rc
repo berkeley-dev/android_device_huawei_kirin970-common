@@ -11,21 +11,3 @@ on property:sys.boot_completed=1
 
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
-
-service dpeservice-1.0 /system/bin/displayengineserver@1.0
-    class main
-    user graphics
-    group graphics system sdcard_rw
-    disabled
-
-service dpeservice-1.1 /system/bin/displayengineserver@1.1
-    class main
-    user graphics
-    group graphics system sdcard_rw
-    disabled
-
-on property:init.svc.displayengine-hal-1-0=*
-    start dpeservice-1.0
-
-on property:init.svc.displayengine-hal-1-1=*
-    start dpeservice-1.1
