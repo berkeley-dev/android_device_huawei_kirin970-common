@@ -1,1 +1,2 @@
 type displayengine_hwservice, hwservice_manager_type;
+type hal_ext_fingerprint_hwservice, hwservice_manager_type;

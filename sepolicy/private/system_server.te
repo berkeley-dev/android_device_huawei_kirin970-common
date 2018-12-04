@@ -1,5 +1,11 @@
 # Allow binder communication with displayengineserver
 binder_call(system_server, displayengineserver)
 
+# Allow system_server to read and write to sysfs_fpc
+allow system_server sysfs_fpc:file rw_file_perms;
+
 # Allow system_server to find display_engine_service
 allow system_server display_engine_service:service_manager find;
+
+# Allow system_server to find hal_ext_fingerprint_hwservice
+allow system_server hal_ext_fingerprint_hwservice:hwservice_manager find;

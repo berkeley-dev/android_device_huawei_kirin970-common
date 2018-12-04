@@ -29,6 +29,9 @@
 # DMD
 /dev/dsm                   u:object_r:dmd_device:s0
 
+# Fingerprint
+/sys/devices/platform/fingerprint/nav    u:object_r:sysfs_fpc:s0
+
 # HiSEE
 /hisee_fs(/.*)?            u:object_r:hisee_data_file:s0
 

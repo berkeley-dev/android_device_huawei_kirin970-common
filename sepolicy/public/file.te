@@ -15,6 +15,7 @@ type secure_storage_block_device, dev_type;
 type shex_block_device, dev_type;
 type splash2_block_device, dev_type;
 type splash2_data_file, data_file_type, file_type;
+type sysfs_fpc, sysfs_type, fs_type;
 type teecd_data_file, data_file_type, file_type;
 type thirdmodem_block_device, dev_type;
 type thirdmodemnvm_block_device, dev_type;
