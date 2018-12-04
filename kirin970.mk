@@ -21,6 +21,10 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
+# bfm
+PRODUCT_PACKAGES += \
+    bfm-ctl
+
 # Device init scripts
 PRODUCT_PACKAGES += \
     init.kirin970.rc

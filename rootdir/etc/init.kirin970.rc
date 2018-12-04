@@ -11,3 +11,9 @@ on property:sys.boot_completed=1
 
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
+
+service bfm-ctl /system/bin/bfm-ctl
+    class main
+    user system
+    group system
+    oneshot

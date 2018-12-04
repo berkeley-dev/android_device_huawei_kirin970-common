@@ -1,0 +1,11 @@
+type bfm-ctl, domain;
+type bfm-ctl_exec, exec_type, file_type;
+
+# Allow for transition from init domain to bfm-ctl
+init_daemon_domain(bfm-ctl)
+
+# Allow bfm-ctl to read and write to bfmr_device
+allow bfm-ctl bfmr_device:chr_file rw_file_perms;
+
+# Allow bfm-ctl to send ioctl to bfmr_device
+allowxperm bfm-ctl bfmr_device:chr_file ioctl { 0x4048420A };
