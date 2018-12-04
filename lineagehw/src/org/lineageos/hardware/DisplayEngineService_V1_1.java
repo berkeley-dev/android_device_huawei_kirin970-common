@@ -37,7 +37,11 @@ public class DisplayEngineService_V1_1 extends DisplayEngineService {
     public static final int DE_ACTION_EXIT = 15;
     public static final int DE_ACTION_MODE_ON = 16;
     public static final int DE_ACTION_MODE_OFF = 17;
-    public static final int DE_ACTION_MAX = 18;
+    public static final int DE_ACTION_MOTION_HOME = 18;
+    public static final int DE_ACTION_MOTION_APP = 19;
+    public static final int DE_ACTION_MOTION_RECENT = 20;
+    public static final int DE_ACTION_MOTION_START = 21;
+    public static final int DE_ACTION_MAX = 22;
 
     public static final int DE_ACTION_PG_DEFAULT_FRONT = 10000;
     public static final int DE_ACTION_PG_BROWSER_FRONT = 10001;
@@ -58,7 +62,8 @@ public class DisplayEngineService_V1_1 extends DisplayEngineService {
     public static final int DE_ACTION_PG_MAX = 10018;
 
     public static final int DE_ALGORITHM_IMAGEPROCESS = 0;
-    public static final int DE_ALGORITHM_MAX = 1;
+    public static final int DE_ALGORITHM_BRIGHTNESSTRAINING = 1;
+    public static final int DE_ALGORITHM_MAX = 2;
 
     public static final int DE_DATA_TYPE_IMAGE = 0;
     public static final int DE_DATA_TYPE_VIDEO = 1;
@@ -74,6 +79,11 @@ public class DisplayEngineService_V1_1 extends DisplayEngineService {
     public static final int DE_DATA_MAX = 11;
 
     public static final int DE_EFFECT_TYPE_PANEL_NAME = 0;
+    public static final int DE_EFFECT_TYPE_HBM_INFO = 1;
+    public static final int DE_EFFECT_TYPE_PANEL_INFO = 2;
+    public static final int DE_EFFECT_TYPE_PANEL_VERSION = 3;
+    public static final int DE_EFFECT_TYPE_IS_IMAGE = 4;
+    public static final int DE_EFFECT_MAX = 5;
 
     public static final int DE_FEATURE_SHARP = 0;
     public static final int DE_FEATURE_CONTRAST = 1;
@@ -98,9 +108,11 @@ public class DisplayEngineService_V1_1 extends DisplayEngineService {
     public static final int DE_FEATURE_HBM = 20;
     public static final int DE_FEATURE_EYE_PROTECT_WITHCT = 21;
     public static final int DE_FEATURE_SHARP2P = 22;
-    public static final int DE_FEATURE_TRUE_TONE = 23;
+    public static final int DE_FEATURE_NATURAL_TONE = 23;
     public static final int DE_FEATURE_ACL = 24;
-    public static final int DE_FEATURE_MAX = 25;
+    public static final int DE_FEATURE_AMOLED = 25;
+    public static final int DE_FEATURE_READING = 26;
+    public static final int DE_FEATURE_MAX = 27;
 
     public static final int DE_SCENE_PG = 0;
     public static final int DE_SCENE_VIDEO = 1;
@@ -128,7 +140,20 @@ public class DisplayEngineService_V1_1 extends DisplayEngineService {
     public static final int DE_SCENE_VIDEO_APP = 23;
     public static final int DE_SCENE_REAL_POWERMODE = 24;
     public static final int DE_SCENE_NATURAL_TONE = 25;
-    public static final int DE_SCENE_MAX = 26;
+    public static final int DE_SCENE_BACKLIGHT = 26;
+    public static final int DE_SCENE_BACKLIGHT_MANUAL = 27;
+    public static final int DE_SCENE_HBM_DIMMING = 28;
+    public static final int DE_SCENE_FINGER_PRINT = 29;
+    public static final int DE_SCENE_UD_FINGER_PRINT_LOCK = 30;
+    public static final int DE_SCENE_UD_ENROLL_FINGER_PRINT = 31;
+    public static final int DE_SCENE_UD_USER_PRESENT = 32;
+    public static final int DE_SCENE_AOD = 33;
+    public static final int DE_SCENE_FINGERPRINT_HBM = 34;
+    public static final int DE_SCENE_MMITEST = 35;
+    public static final int DE_SCENE_GAME = 36;
+    public static final int DE_SCENE_READMODE = 37;
+    public static final int DE_SCENE_MOTION = 38;
+    public static final int DE_SCENE_MAX = 39;
 
     @Override
     public boolean isColorModeSupported() {
