@@ -1,9 +1,19 @@
-# Allow init to relabel userdata block device
-allow init userdata_block_device:blk_file relabelto;
-allow init userdata_block_device:lnk_file relabelto;
+# Allow init to mount block devices
+allow init {
+    block_device
+    hisee_data_file
+    splash2_data_file
+}:dir mounton;
 
-# Allow init to mount /dev/block/bootdevice/by-name
-allow init block_device:dir mounton;
+allow init {
+    hisee_data_file
+    splash2_data_file
+}:filesystem { getattr mount relabelfrom relabelto };
+
+allow {
+    hisee_data_file
+    splash2_data_file
+} self:filesystem associate;
 
 # Allow init to mount fingerprint keylayout
 allow init vendor_file:file mounton;

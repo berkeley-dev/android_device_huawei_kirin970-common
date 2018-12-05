@@ -1,4 +1,0 @@
-#type gpsd, domain, netdomain;
-
-#allow gpsd system_data_file:dir add_name;
-#allow gpsd system_data_file:file create_file_perms;
