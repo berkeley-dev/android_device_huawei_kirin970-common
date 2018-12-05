@@ -40,9 +40,6 @@ TARGET_PREBUILT_KERNEL := /dev/null
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
-# Extended Filesystem Support
-TARGET_EXFAT_DRIVER := exfat
-
 # Lineage hardware
 JAVA_SOURCE_OVERLAYS := \
     org.lineageos.hardware|$(VENDOR_PATH)/lineagehw|**/*.java
