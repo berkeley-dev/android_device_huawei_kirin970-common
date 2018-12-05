@@ -25,6 +25,10 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     bfm-ctl
 
+# Camera
+PRODUCT_PACKAGES += \
+    Snap
+
 # Device init scripts
 PRODUCT_PACKAGES += \
     init.kirin970.rc
