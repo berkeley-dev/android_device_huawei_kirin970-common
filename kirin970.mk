@@ -45,8 +45,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
-    com.android.nfc_extras \
-    nfc_nci.pn54x.default
+    com.android.nfc_extras
 
 PRODUCT_COPY_FILES += \
     device/generic/common/nfc/libnfc-nci.conf:system/etc/libnfc-nci.conf
