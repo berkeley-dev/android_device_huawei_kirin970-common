@@ -1,3 +1,7 @@
+# Bluetooth - aptX
+lib64/libaptX_encoder.so
+lib64/libaptXHD_encoder.so
+
 # Charger
 etc/charger/1080x1920/battery_abnormality_empty_charge.png
 etc/charger/1080x1920/bg.png
