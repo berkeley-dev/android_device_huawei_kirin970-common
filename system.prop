@@ -8,4 +8,3 @@ ro.vendor.qti.sys.fw.bg_apps_limit=60
 
 # RIL
 ro.telephony.default_network=9,9
-ro.telephony.isHisiRIL=true
