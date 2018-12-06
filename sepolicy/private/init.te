@@ -1,6 +1,5 @@
 # Allow init to mount block devices
 allow init {
-    block_device
     hisee_data_file
     splash2_data_file
 }:dir mounton;
