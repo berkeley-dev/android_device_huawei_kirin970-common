@@ -21,6 +21,9 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
+# Properties
+-include $(LOCAL_PATH)/system_prop.mk
+
 # bfm
 PRODUCT_PACKAGES += \
     bfm-ctl
@@ -55,10 +58,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
-
-# Properties
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.cust.cdrom=/dev/null
 
 # Radio
 PRODUCT_PACKAGES += \
