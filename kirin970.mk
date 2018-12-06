@@ -31,7 +31,8 @@ PRODUCT_PACKAGES += \
 
 # Device init scripts
 PRODUCT_PACKAGES += \
-    init.kirin970.rc
+    init.kirin970.rc \
+    init.kirin970.sh
 
 # Display
 PRODUCT_PACKAGES += \
