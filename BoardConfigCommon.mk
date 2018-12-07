@@ -83,9 +83,12 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)/releasetools
 
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := \
+    cust \
     modem_log \
+    preload \
     sec_storage \
-    splash2
+    splash2 \
+    version
 
 # SELinux
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/private

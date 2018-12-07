@@ -24,10 +24,13 @@
 /data/test_ver\.bin       u:object_r:cust_data_file:s0
 
 # Rootfs
+/cust(/.*)?            u:object_r:system_file:s0
 /mnt/hisee_fs(/.*)?    u:object_r:hisee_data_file:s0
 /modem_log(/.*)?       u:object_r:modem_log_file:s0
+/preload(/.*)?         u:object_r:system_file:s0
 /sec_storage(/.*)?     u:object_r:teecd_data_file:s0
 /splash2(/.*)?         u:object_r:splash2_data_file:s0
+/version(/.*)?         u:object_r:system_file:s0
 
 # Binaries
 /system/bin/bfm-ctl                u:object_r:bfm-ctl_exec:s0

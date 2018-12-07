@@ -6,7 +6,10 @@ on init
     mount none /vendor/lost+found /vendor/etc/audio bind
 
 on fs
+    mount ext4 /dev/block/by-name/cust_a /cust wait ro
+    mount ext4 /dev/block/by-name/preload_a /preload wait ro
     mount ext4 /dev/block/by-name/product_a /product wait ro
+    mount ext4 /dev/block/by-name/version_a /version wait ro
 
     mkdir /data/sec_storage_data 0770 system system
     mkdir /data/sec_storage_data_users 0770 system system
