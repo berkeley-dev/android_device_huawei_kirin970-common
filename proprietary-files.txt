@@ -1935,7 +1935,7 @@ lib64/vendor.huawei.hardware.hwdisplay.displayengine@1.1.so
 -priv-app/HotwordEnrollmentXGoogleHI6403/HotwordEnrollmentXGoogleHI6403.apk;PRESIGNED|7e8376ad34941bd68194540d1977e36b1e1b6d74
 
 # Radio
-emui/base/global/ons.bin
+emui/base/global/ons.bin:ons.bin
 
 # SmartDisplay
 lib/libhwsmartdisplay_jni.so
