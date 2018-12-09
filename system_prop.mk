@@ -25,6 +25,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.multisim.config=dsds \
     ro.telephony.default_network=9,9
 
 # USB
