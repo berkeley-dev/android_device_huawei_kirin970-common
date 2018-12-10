@@ -14,10 +14,6 @@ on fs
     mkdir /data/sec_storage_data 0770 system system
     mkdir /data/sec_storage_data_users 0770 system system
 
-on property:sys.boot_completed=1
-    write /sys/class/hw_power/charger/direct_charger/iin_thermal 4500
-    write /sys/class/hw_power/charger/charge_data/iin_thermal 2000
-
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
 
