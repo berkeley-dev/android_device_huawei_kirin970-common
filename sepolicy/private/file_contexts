@@ -19,6 +19,7 @@
 /data/custom\.bin         u:object_r:cust_data_file:s0
 /data/custom_cota\.bin    u:object_r:cust_data_file:s0
 /data/facapp(/.*)?        u:object_r:cust_data_file:s0
+/data/nfc(/.*)?           u:object_r:nfc_data_file:s0
 /data/product\.bin        u:object_r:cust_data_file:s0
 /data/test_nv\.bin        u:object_r:cust_data_file:s0
 /data/test_ver\.bin       u:object_r:cust_data_file:s0
