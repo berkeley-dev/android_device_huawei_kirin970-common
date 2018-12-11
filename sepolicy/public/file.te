@@ -15,6 +15,6 @@ type recovery_device, dev_type;
 type splash2_block_device, dev_type;
 type splash2_data_file, file_type;
 type sysfs_devices_platform_amba, sysfs_type, fs_type;
-type sysfs_fpc, sysfs_type, fs_type;
+type sysfs_fingerprint, sysfs_type, fs_type;
 type sysfs_touchscreen, sysfs_type, fs_type;
 type teecd_data_file, file_type;

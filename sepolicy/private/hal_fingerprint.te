@@ -1,2 +1,0 @@
-# Allow hal_fingerprint to read and write to sysfs_fpc
-allow hal_fingerprint sysfs_fpc:file rw_file_perms;

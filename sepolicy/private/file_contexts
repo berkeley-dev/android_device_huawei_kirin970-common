@@ -15,7 +15,7 @@
 /dev/ttyHwGS2                      u:object_r:recovery_device:s0
 
 # Sys files
-/sys/devices/platform/fingerprint/nav    u:object_r:sysfs_fpc:s0
+/sys/devices/platform/fingerprint(/.*)?    u:object_r:sysfs_fingerprint:s0
 
 # Data files
 /data/cust_ver\.bin       u:object_r:cust_data_file:s0
