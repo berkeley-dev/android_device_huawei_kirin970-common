@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "android_kernel_huawei_kirin970",
+    "target_path": "kernel/huawei/kirin970"
+  }
+]
