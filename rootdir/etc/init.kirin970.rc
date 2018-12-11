@@ -2,7 +2,6 @@ on init
     mkdir /dev/block/bootdevice
     symlink /dev/block/by-name /dev/block/bootdevice/by-name
 
-    mount none /system/usr/keylayout/fingerprint.kl /vendor/usr/keylayout/fingerprint.kl bind
     mount none /vendor/lost+found /vendor/etc/audio bind
 
 on fs
