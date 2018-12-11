@@ -1,6 +1,7 @@
 # Devices
 /dev/block/by-name/modem_om        u:object_r:mke2fs_blkdev:s0
 /dev/block/by-name/modemnvm_img    u:object_r:mke2fs_blkdev:s0
+/dev/block/by-name/oeminfo         u:object_r:oeminfo_nvm_device:s0
 /dev/block/by-name/splash2         u:object_r:splash2_block_device:s0
 /dev/block/by-name/userdata        u:object_r:userdata_block_device:s0
 /dev/dsm                           u:object_r:dmd_device:s0
@@ -8,8 +9,10 @@
 /dev/hwlog_dubai                   u:object_r:dubai_log_device:s0
 /dev/hwlog_exception               u:object_r:exception_device:s0
 /dev/hwlog_jank                    u:object_r:jank_device:s0
+/dev/nve0                          u:object_r:recovery_device:s0
 /dev/pmom                          u:object_r:pmom_device:s0
 /dev/ttyAMA0                       u:object_r:irda_device:s0
+/dev/ttyHwGS2                      u:object_r:recovery_device:s0
 
 # Sys files
 /sys/devices/platform/fingerprint/nav    u:object_r:sysfs_fpc:s0
