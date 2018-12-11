@@ -21,9 +21,3 @@ service bfm-ctl /system/bin/bfm-ctl
     user system
     group system
     oneshot
-
-service init-kirin970-sh /system/bin/init.kirin970.sh
-    class late_start
-    user root
-    group root
-    oneshot

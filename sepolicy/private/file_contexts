@@ -1,4 +1,5 @@
 # Devices
+/dev/block/by-name/misc            u:object_r:misc_dev_block:s0
 /dev/block/by-name/modem_om        u:object_r:mke2fs_blkdev:s0
 /dev/block/by-name/modemnvm_img    u:object_r:mke2fs_blkdev:s0
 /dev/block/by-name/oeminfo         u:object_r:oeminfo_nvm_device:s0
@@ -39,4 +40,3 @@
 # Binaries
 /system/bin/bfm-ctl                u:object_r:bfm-ctl_exec:s0
 /system/bin/displayengineserver    u:object_r:displayengineserver_exec:s0
-/system/bin/init\.kirin970\.sh     u:object_r:kirin970_init_shell_exec:s0
