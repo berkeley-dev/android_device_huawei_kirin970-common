@@ -10,9 +10,6 @@ on fs
     mount ext4 /dev/block/by-name/product_a /product wait ro
     mount ext4 /dev/block/by-name/version_a /version wait ro
 
-    mkdir /data/sec_storage_data 0770 system system
-    mkdir /data/sec_storage_data_users 0770 system system
-
     trigger cust_parse_action
 
 on post-fs
@@ -23,6 +20,10 @@ on post-fs-data
 
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
+
+on property:sys.user.0.ce_available=true
+    mkdir /data/sec_storage_data 0700 system system
+    mkdir /data/sec_storage_data_users 0700 system system
 
 service bfm-ctl /system/bin/bfm-ctl
     class main
