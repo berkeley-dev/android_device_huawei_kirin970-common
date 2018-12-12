@@ -1,0 +1,2 @@
+# Allow hal_nfc to read /data/cust symlink
+allow hal_nfc system_data_file:lnk_file { getattr read };
