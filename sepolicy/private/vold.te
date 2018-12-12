@@ -1,0 +1,9 @@
+# Allow vold to unmount block devices
+allow vold {
+    hisee_data_file
+    modem_nv_file
+    modem_secure_file
+}:filesystem unmount;
+
+# Allow vold to list files in mnt_modem_file
+allow vold mnt_modem_file:dir search;
