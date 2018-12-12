@@ -9,6 +9,7 @@ on fs
     mount ext4 /dev/block/by-name/preload_a /preload wait ro
     mount ext4 /dev/block/by-name/product_a /product wait ro
     mount ext4 /dev/block/by-name/version_a /version wait ro
+    mount none /product/lost+found /product/app bind
 
     trigger cust_parse_action
 
