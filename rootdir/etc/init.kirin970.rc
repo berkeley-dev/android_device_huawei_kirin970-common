@@ -13,6 +13,14 @@ on fs
     mkdir /data/sec_storage_data 0770 system system
     mkdir /data/sec_storage_data_users 0770 system system
 
+    trigger cust_parse_action
+
+on post-fs
+    start hwfactoryinterface-hal-1-1
+
+on post-fs-data
+    start teecd
+
 on property:ro.lineage.device=*
     setprop qemu.hw.mainkeys 1
 
