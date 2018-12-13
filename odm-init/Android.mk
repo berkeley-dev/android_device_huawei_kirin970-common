@@ -14,15 +14,15 @@
 # limitations under the License.
 #
 
-# Audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.media_vol_steps=25 \
-    ro.config.vc_call_vol_steps=7
+LOCAL_PATH := $(call my-dir)
 
-# Perf
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.sys.fw.bg_apps_limit=60
+include $(CLEAR_VARS)
 
-# USB
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.cust.cdrom=/dev/null
+LOCAL_SRC_FILES := odm-init.cpp
+
+LOCAL_MODULE := odm-init
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_SHARED_LIBRARIES := libbase
+
+include $(BUILD_EXECUTABLE)

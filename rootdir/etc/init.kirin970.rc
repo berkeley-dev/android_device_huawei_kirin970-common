@@ -11,6 +11,9 @@ on fs
     mount ext4 /dev/block/by-name/version_a /version wait ro
     mount none /product/lost+found /product/app bind
 
+on post-fs
+    exec - root -- /system/bin/odm-init
+
 on post-fs-data
     start teecd
 

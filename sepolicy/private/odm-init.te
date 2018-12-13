@@ -1,0 +1,18 @@
+type odm-init, domain;
+type odm-init_exec, exec_type, file_type;
+
+# Allow for transition from init domain to odm-init
+init_daemon_domain(odm-init)
+
+# Allow odm-init to read proc_cmdline
+allow odm-init proc_cmdline:file r_file_perms;
+
+# Allow odm-init to read vendor_file
+r_dir_file(odm-init, vendor_file)
+
+# Allow odm-init to set various properties
+set_prop(odm-init, config_prop)
+set_prop(odm-init, default_prop)
+set_prop(odm-init, radio_prop)
+set_prop(odm-init, rild_vendor_prop)
+set_prop(odm-init, vendor_default_prop)
