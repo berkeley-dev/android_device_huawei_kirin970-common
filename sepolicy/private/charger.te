@@ -1,0 +1,8 @@
+# Allow charger to write to sysfs_backlight_attr
+allow charger sysfs_backlight_attr:file w_file_perms;
+
+# Allow charger to write to sysfs_led_attr
+allow charger sysfs_led_attr:file w_file_perms;
+
+# Allow charger to read and write to sysfs_power
+allow charger sysfs_power:file rw_file_perms;

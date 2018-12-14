@@ -1917,6 +1917,7 @@ etc/charger/public/800_serial/scp_charging_20.png
 etc/charger/public/800_serial/scp_charging_21.png
 etc/charger/public/800_serial/scp_charging_22.png
 etc/charger/public/800_serial/scp_charging_23.png
+-sbin/charger:sbin/chargeonlymode;rootfs|124a478904a2bd08e2a1e6c4a1bdc4ab124743d4
 
 # Display engine
 bin/displayengineserver

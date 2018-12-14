@@ -1,3 +1,5 @@
+import /vendor/etc/init/${ro.bootmode}/init.${ro.bootmode}.rc
+
 on init
     mkdir /dev/block/bootdevice
     symlink /dev/block/by-name /dev/block/bootdevice/by-name
@@ -29,3 +31,10 @@ service bfm-ctl /system/bin/bfm-ctl
     user system
     group system
     oneshot
+
+service charger /sbin/chargeonlymode -p
+    class charger
+    user root
+    group root system
+    critical
+    seclabel u:r:charger:s0
