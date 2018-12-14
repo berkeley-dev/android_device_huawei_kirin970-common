@@ -16,8 +16,10 @@
 
 #define LOG_TAG "odm-init"
 
+#include <android-base/file.h>
 #include <android-base/logging.h>
 #include <android-base/properties.h>
+#include <android-base/strings.h>
 #include <algorithm>
 #include <cstring>
 #include <fstream>
@@ -25,35 +27,36 @@
 #include <vector>
 
 constexpr auto CMDLINE_PATH = "/proc/cmdline";
-constexpr auto CMDLINE_PRODUCT_ID = "productid=";
+constexpr auto CMDLINE_PRODUCT_ID = "productid";
 constexpr auto PHONE_PROP_PATH = "/odm/phone.prop";
 
+using android::base::ReadFileToString;
 using android::base::SetProperty;
+using android::base::Split;
+using android::base::Trim;
 
 using PropertyPair = std::pair<std::string, std::string>;
 using PropertiesVector = std::vector<PropertyPair>;
 
 bool GetProductId(std::string& out) {
-    std::ifstream file(CMDLINE_PATH);
+    std::string str;
 
-    if (!file.is_open()) {
+    if (!ReadFileToString(CMDLINE_PATH, &str)) {
         LOG(ERROR) << "Unable to open: " << CMDLINE_PATH;
         return false;
     }
 
-    std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    size_t offset = str.find(CMDLINE_PRODUCT_ID);
+    for (const auto& entry : Split(Trim(str), " ")) {
+        std::vector<std::string> pieces = Split(entry, "=");
 
-    if (offset == std::string::npos) {
-        LOG(ERROR) << "Unable to find product id";
-        return false;
+        if (pieces.size() == 2 && pieces.at(0) == CMDLINE_PRODUCT_ID) {
+            out = pieces.at(1);
+            std::transform(out.begin(), out.end(), out.begin(), ::toupper);
+            return true;
+        }
     }
 
-    out = str.substr(offset + strlen(CMDLINE_PRODUCT_ID), 10);
-
-    std::transform(out.begin(), out.end(), out.begin(), ::toupper);
-
-    return true;
+    return false;
 }
 
 bool GetPropertiesFromPhoneProp(std::map<std::string, PropertiesVector>& out) {
@@ -80,10 +83,10 @@ bool GetPropertiesFromPhoneProp(std::map<std::string, PropertiesVector>& out) {
 
         // Checking if currentProductId isn't empty just in case someone breaks their phone.prop
         if (!currentProductId.empty()) {
-            size_t offset = line.find('=');
+            std::vector<std::string> pieces = Split(line, "=");
 
-            if (offset != std::string::npos) {
-                out[currentProductId].push_back({line.substr(0, offset), line.substr(offset + 1)});
+            if (pieces.size() == 2) {
+                out[currentProductId].push_back({pieces.at(0), pieces.at(1)});
             }
         }
     }
