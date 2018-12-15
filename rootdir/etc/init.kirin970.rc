@@ -4,8 +4,6 @@ on init
     mkdir /dev/block/bootdevice
     symlink /dev/block/by-name /dev/block/bootdevice/by-name
 
-    mount none /vendor/lost+found /vendor/etc/audio bind
-
 on fs
     mount ext4 /dev/block/by-name/cust_a /cust wait ro
     mount ext4 /dev/block/by-name/preload_a /preload wait ro
@@ -13,6 +11,7 @@ on fs
     mount ext4 /dev/block/by-name/version_a /version wait ro
     mount none /odm/hw_odm/${ro.boot.product.hardware.sku} /hw_odm bind
     mount none /product/lost+found /product/app bind
+    mount none /vendor/lost+found /vendor/etc/audio bind
 
 on post-fs
     exec - root -- /system/bin/odm-init
