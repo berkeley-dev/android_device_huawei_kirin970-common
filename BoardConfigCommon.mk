@@ -94,6 +94,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)/releasetools
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := \
     cust \
+    hw_odm \
     modem_log \
     preload \
     sec_storage \

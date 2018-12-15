@@ -30,6 +30,7 @@
 
 # Rootfs
 /cust(/.*)?            u:object_r:system_file:s0
+/hw_odm(/.*)?          u:object_r:rootfs:s0
 /mnt/hisee_fs(/.*)?    u:object_r:hisee_data_file:s0
 /modem_log(/.*)?       u:object_r:modem_log_file:s0
 /preload(/.*)?         u:object_r:system_file:s0
