@@ -14,9 +14,6 @@ allow {
     splash2_data_file
 } self:filesystem associate;
 
-# Allow init to mount /product app folder
-allow init system_file:dir mounton;
-
 # Allow init to mount vendor configs
 allow init vendor_configs_file:file mounton;
 allow init vendor_configs_file:dir mounton;
