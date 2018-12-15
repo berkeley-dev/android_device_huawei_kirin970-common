@@ -1,8 +1,7 @@
 import /vendor/etc/init/${ro.bootmode}/init.${ro.bootmode}.rc
 
 on init
-    mkdir /dev/block/bootdevice
-    symlink /dev/block/by-name /dev/block/bootdevice/by-name
+    symlink /dev/block/platform/${ro.boot.boot_devices} /dev/block/bootdevice
 
 on fs
     mount ext4 /dev/block/by-name/cust_a /cust wait ro
