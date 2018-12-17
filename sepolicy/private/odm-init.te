@@ -1,4 +1,4 @@
-type odm-init, domain;
+type odm-init, coredomain, domain;
 type odm-init_exec, exec_type, file_type;
 
 # Allow for transition from init domain to odm-init
