@@ -117,8 +117,6 @@
                 </devicePort>
                 <devicePort tagName="Telephony Tx" type="AUDIO_DEVICE_OUT_TELEPHONY_TX" role="sink">
                 </devicePort>
-                <devicePort tagName="USB EXTDevice Out" type="AUDIO_DEVICE_OUT_USB_DEVICE_EXTENDED" role="sink">
-                </devicePort>
                 <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source">
                 </devicePort>
                 <devicePort tagName="Built-In Back Mic" type="AUDIO_DEVICE_IN_BACK_MIC" role="source">
@@ -130,8 +128,6 @@
                 <devicePort tagName="Telephony Rx" type="AUDIO_DEVICE_IN_TELEPHONY_RX" role="source">
                 </devicePort>
                 <devicePort tagName="FM Tuner" type="AUDIO_DEVICE_IN_FM_TUNER" role="source">
-                </devicePort>
-                <devicePort tagName="USB EXTDevice In" type="AUDIO_DEVICE_IN_USB_DEVICE_EXTENDED" role="source">
                 </devicePort>
             </devicePorts>
             <!-- route declaration, i.e. list all available sources for a given sink -->
@@ -156,10 +152,8 @@
                        sources="primary out"/>
                 <route type="mix" sink="Telephony Tx"
                        sources="primary out"/>
-                <route type="mix" sink="USB EXTDevice Out"
-                       sources="primary out,offload,direct_pcm"/>
                 <route type="mix" sink="primary in"
-                       sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,BT SCO Headset Mic,FM Tuner,Telephony Rx,USB EXTDevice In"/>
+                       sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,BT SCO Headset Mic,FM Tuner,Telephony Rx"/>
                 <route type="mix" sink="lowlatency in"
                        sources="Built-In Mic,Wired Headset Mic"/>
             </routes>
